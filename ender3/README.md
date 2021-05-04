@@ -2,7 +2,7 @@
 
 
 Standard Ender 3 with the following changes:
-- BTT Ender Mini E3 v1.0 board
+- BTT Ender Mini E3 Turbo board
 - BLTouch for Z endstop
 - 3 point bed level plate
 - Micro-Swiss DDE
@@ -157,6 +157,15 @@ The difference between resonance disabled and enabled is mind boggling. The qual
 
 ### Pressure Advance
 
-SET_PRESSURE_ADVANCE ADVANCE=0.
+Read the [docs](https://www.klipper3d.org/Pressure_Advance.html) on github.
 
+```
+SET_PRESSURE_ADVANCE ADVANCE=0
+SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY=1 ACCEL=500
+TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=.005
+```
 
+#### Print the test file
+calibration/CE3_square_tower.gcode
+
+pressure_advance: 0.07500

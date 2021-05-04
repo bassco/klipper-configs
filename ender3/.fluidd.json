@@ -1,1 +1,94 @@
-{"general":{"instanceName":"ender3","jobsInDash":false,"darkMode":true,"hideTempWaits":true,"axis":{"x":{"inverted":false},"y":{"inverted":false},"z":{"inverted":false}},"invertZControl":false,"printTimeEstimationsType":"file","defaultExtrudeLength":10,"defaultExtrudeSpeed":5,"defaultToolheadMoveLength":"1.0","defaultToolheadXYSpeed":130,"defaultToolheadZSpeed":10,"jobsInMenu":true},"camera":{"enabled":false,"type":"mjpgstreamer","url":"http://192.168.178.91/webcam/?action=stream","flipX":false,"flipY":false},"dashboard":{"tempPresets":[{"name":"PETG","values":{"extruder":{"value":"245","type":"heater","active":true},"heater_bed":{"value":"85","type":"heater","active":true}}},{"name":"PLA","values":{"extruder":{"value":"205","type":"heater","active":true},"heater_bed":{"value":"60","type":"heater","active":true}}},{"name":"FIL_PLA","values":{"extruder":{"value":"205","type":"heater","active":true},"heater_bed":{"value":0,"type":"heater","active":false}}},{"name":"FIL_PETG","values":{"extruder":{"value":"245","type":"heater","active":true},"heater_bed":{"value":0,"type":"heater","active":false}}}],"hiddenMacros":[]}}
+{
+    "general": {
+        "instanceName": "ender3",
+        "jobsInDash": false,
+        "darkMode": true,
+        "hideTempWaits": true,
+        "axis": {
+            "x": {
+                "inverted": false
+            },
+            "y": {
+                "inverted": false
+            },
+            "z": {
+                "inverted": false
+            }
+        },
+        "invertZControl": false,
+        "printTimeEstimationsType": "file",
+        "defaultExtrudeLength": 10,
+        "defaultExtrudeSpeed": 5,
+        "defaultToolheadMoveLength": "1.0",
+        "defaultToolheadXYSpeed": 130,
+        "defaultToolheadZSpeed": 10,
+        "jobsInMenu": true
+    },
+    "camera": {
+        "enabled": false,
+        "type": "mjpgstreamer",
+        "url": "http://192.168.178.91/webcam/?action=stream",
+        "flipX": false,
+        "flipY": false
+    },
+    "dashboard": {
+        "tempPresets": [{
+            "name": "PETG",
+            "values": {
+                "extruder": {
+                    "value": "245",
+                    "type": "heater",
+                    "active": true
+                },
+                "heater_bed": {
+                    "value": "85",
+                    "type": "heater",
+                    "active": true
+                }
+            }
+        }, {
+            "name": "PLA",
+            "values": {
+                "extruder": {
+                    "value": "205",
+                    "type": "heater",
+                    "active": true
+                },
+                "heater_bed": {
+                    "value": "60",
+                    "type": "heater",
+                    "active": true
+                }
+            }
+        }, {
+            "name": "FIL_PLA",
+            "values": {
+                "extruder": {
+                    "value": "205",
+                    "type": "heater",
+                    "active": true
+                },
+                "heater_bed": {
+                    "value": 0,
+                    "type": "heater",
+                    "active": false
+                }
+            }
+        }, {
+            "name": "FIL_PETG",
+            "values": {
+                "extruder": {
+                    "value": "245",
+                    "type": "heater",
+                    "active": true
+                },
+                "heater_bed": {
+                    "value": 0,
+                    "type": "heater",
+                    "active": false
+                }
+            }
+        }],
+        "hiddenMacros": []
+    }
+}
