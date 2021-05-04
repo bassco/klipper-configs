@@ -25,6 +25,16 @@ The `make flash /dev/....` does not work for this chipset/board.
 
 Copy `out/klipper.bin` to the SDcard as `firmware.bin` and start the machine.
 
+### The new firmware update method
+
+```shell
+cd ~/klipper
+sudo systemctl stop klipper
+make
+scripts/flash-sdcard.sh /dev/ttyACM0 btt-skr-e3-turbo
+sudo systemctl start klipper
+```
+
 ## Klipper printer.cfg
 
 Upload the printer.cfg file to the Pi.
@@ -113,7 +123,9 @@ Fitted shaper '2hump_ei' frequency = 52.4 Hz (vibrations = 7.3%, smoothing ~= 0.
 Fitted shaper '3hump_ei' frequency = 50.0 Hz (vibrations = 4.6%, smoothing ~= 0.328)
 Recommended shaper is 2hump_ei @ 52.4 Hz
 ```
-[X](shaper_calibrate_x.png)[X Shaper Result]
+![](shaper_calibrate_x.png)
+
+X Shaper Result
 
 ```
 ~/klipper/scripts/calibrate_shaper.py /tmp/resonances_y_20210130_221343.csv -o /tmp/shaper_calibrate_y.png
@@ -125,7 +137,9 @@ Fitted shaper '3hump_ei' frequency = 50.0 Hz (vibrations = 6.3%, smoothing ~= 0.
 Recommended shaper is 3hump_ei @ 50.0 Hz
 ```
 
-[Y](shaper_calibrate_y.png)[Y Shaper Result]
+![](shaper_calibrate_y.png)
+
+Y Shaper Result
 
 Set the `[input_shaper]` from the above outputs
 
