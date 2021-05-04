@@ -1,0 +1,6 @@
+# set some stuff up
+# top-most EditorConfig file
+root = true
+
+[*]
+end_of_line = lf
