@@ -15,6 +15,11 @@ make
 make flash FLASH_DEVICE=/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0
 sudo systemctl start klipper
 ```
+## udev-rules
+
+Auto-restart the klipper service if the USB plug is removed or the printer is power cycled with the pi still running. See the discussion on the issue [#835](https://github.com/KevinOConnor/klipper/issues/835) of the firmware.
+
+Add the [99-klipper.rules](99-klipper.rules) file to `/etc/udev/rules.d` folder. Ensure that the idVendor and idProduct match the values from `lsusb`. Then you will need to reload udev rules using `sudo udevadm control --reload-rules` or reboot the pi.
 
 ## Fysetc Mini12864 LCD Screen
 
