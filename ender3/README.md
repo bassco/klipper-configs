@@ -6,7 +6,6 @@ Standard Ender 3 with the following changes:
 - BLTouch for Z endstop
 - 3 point bed level plate
 - Micro-Swiss DDE
-- TriangleLab 3:1 Extruder Geared Stepper Motor
 - Energetic Spring Steel Smooth PEI printing plate
 
 ## Mechanical Alignment
@@ -15,15 +14,7 @@ Used this video for (https://www.youtube.com/watch?v=4bFYH0X3qjk)[X-Gantry]
 
 ## Klipper firmware
 
-The BTT Ender Mini 3 v1.0 board has an STMF103 72MHz chipset.
-
-Attached `.config` has requires some special config which is attached here.
-
-Copy the `.config` file and `make` to create the firmware.
-
-The `make flash /dev/....` does not work for this chipset/board.
-
-Copy `out/klipper.bin` to the SDcard as `firmware.bin` and start the machine.
+The `make menuconfig` config file is located in this folder and is setup for the E3 Mini Turbo board.
 
 ### The new firmware update method
 
@@ -76,6 +67,19 @@ Repeat a final test and then run the BED_MESH_CALIBRATE
 * Enable SPI in `sudo raspi-config`
 * Remove the serial prefix with `vim /boot/comdline.txt`
 
+Copy `.config-linux` as `.config` to the pi and compile
+
+```shell
+scp .config-linux pi@ender3:~/klipper/.config
+ssh pi@ender3
+cd ~/klipper
+make clean
+make
+make flash
+sudo cp "./scripts/klipper-mcu-start.sh" /etc/init.d/klipper_mcu
+sudo update-rc.d klipper_mcu defaults
+```
+
 Add the mcu and resonance_tester sections to printer.cfg
 
 ```
@@ -94,9 +98,27 @@ probe_points:
 * ~/klippy-env/bin/pip install -v numpy
 * sudo apt install python-numpy python-matplotlib
 
+REBOOT
+
+Test the mcu using the cli
+
+```shell
+gpioinfo|grep spi
+	line   7:      unnamed   "spi0 CS1"  output   active-low [used]
+	line   8:      unnamed   "spi0 CS0"  output   active-low [used]
+```
+Test the adxl345 via fluid interface
+
 * G28
 * ACCELEROMETER_QUERY
 * MEASURE_AXES_NOISE
+
+```text
+ACCELEROMETER_QUERY
+// adxl345 values (x, y, z): 305.967480, 382.459350, 9179.024400
+MEASURE_AXES_NOISE
+// Axes noise for xy-axis accelerometer: 19.791827 (x), 20.383743 (y), 54.123011 (z)
+```
 
 Set the accel values high
 
@@ -114,15 +136,6 @@ Disable input shaper and run the test
 Generate the output
 Change the timestamp as appropriate
 
-```
-~/klipper/scripts/calibrate_shaper.py /tmp/resonances_x_20210130_213818.csv -o /tmp/shaper_calibrate_x.png
-Fitted shaper 'zv' frequency = 46.8 Hz (vibrations = 29.8%, smoothing ~= 0.076)
-Fitted shaper 'mzv' frequency = 40.4 Hz (vibrations = 13.5%, smoothing ~= 0.125)
-Fitted shaper 'ei' frequency = 48.4 Hz (vibrations = 12.0%, smoothing ~= 0.138)
-Fitted shaper '2hump_ei' frequency = 52.4 Hz (vibrations = 7.3%, smoothing ~= 0.197)
-Fitted shaper '3hump_ei' frequency = 50.0 Hz (vibrations = 4.6%, smoothing ~= 0.328)
-Recommended shaper is 2hump_ei @ 52.4 Hz
-```
 ![](shaper_calibrate_x.png)
 
 X Shaper Result
@@ -140,6 +153,35 @@ Recommended shaper is 3hump_ei @ 50.0 Hz
 ![](shaper_calibrate_y.png)
 
 Y Shaper Result
+```shell
+pi@ender3:~ $ ~/klipper/scripts/calibrate_shaper.py /tmp/resonances_y_20210630_223910.csv -o /tmp/shaper_calibrate_y.png
+Fitted shaper 'zv' frequency = 46.0 Hz (vibrations = 9.5%, smoothing ~= 0.078)
+To avoid too much smoothing with 'zv', suggested max_accel <= 8200 mm/sec^2
+Fitted shaper 'mzv' frequency = 29.4 Hz (vibrations = 1.0%, smoothing ~= 0.236)
+To avoid too much smoothing with 'mzv', suggested max_accel <= 2500 mm/sec^2
+Fitted shaper 'ei' frequency = 39.4 Hz (vibrations = 0.0%, smoothing ~= 0.208)
+To avoid too much smoothing with 'ei', suggested max_accel <= 2900 mm/sec^2
+Fitted shaper '2hump_ei' frequency = 50.2 Hz (vibrations = 0.0%, smoothing ~= 0.214)
+To avoid too much smoothing with '2hump_ei', suggested max_accel <= 2800 mm/sec^2
+Fitted shaper '3hump_ei' frequency = 62.0 Hz (vibrations = 0.0%, smoothing ~= 0.213)
+To avoid too much smoothing with '3hump_ei', suggested max_accel <= 2800 mm/sec^2
+Recommended shaper is ei @ 39.4 Hz
+
+# Tightented the Y-Axis belt and re-run the test
+
+pi@ender3:~ $ ~/klipper/scripts/calibrate_shaper.py /tmp/resonances_y_20210630_230110.csv -o /tmp/shaper_calibrate_y.png
+Fitted shaper 'zv' frequency = 48.2 Hz (vibrations = 2.8%, smoothing ~= 0.072)
+To avoid too much smoothing with 'zv', suggested max_accel <= 9100 mm/sec^2
+Fitted shaper 'mzv' frequency = 46.2 Hz (vibrations = 0.0%, smoothing ~= 0.095)
+To avoid too much smoothing with 'mzv', suggested max_accel <= 6300 mm/sec^2
+Fitted shaper 'ei' frequency = 56.2 Hz (vibrations = 0.0%, smoothing ~= 0.102)
+To avoid too much smoothing with 'ei', suggested max_accel <= 5900 mm/sec^2
+Fitted shaper '2hump_ei' frequency = 71.6 Hz (vibrations = 0.0%, smoothing ~= 0.105)
+To avoid too much smoothing with '2hump_ei', suggested max_accel <= 5700 mm/sec^2
+Fitted shaper '3hump_ei' frequency = 88.0 Hz (vibrations = 0.0%, smoothing ~= 0.106)
+To avoid too much smoothing with '3hump_ei', suggested max_accel <= 5700 mm/sec^2
+Recommended shaper is mzv @ 46.2 Hz
+```
 
 Set the `[input_shaper]` from the above outputs
 
@@ -147,14 +189,13 @@ Set the `[input_shaper]` from the above outputs
 [input_shaper]
 shaper_freq_x: 52.4
 shaper_type_x: 2hump_ei
-shaper_freq_y: 50.0
-shaper_type_y: 3hump_ei
-
+shaper_freq_y: 46.2
+shaper_type_y: mzv
 ```
 
 Print the ringing_tower.stl to confirm that you have good settings.
 
-Vase mode 6 base layers bottom 0.25mm height at 100 mm/s on all perimeters. 0.95 flow with the set rotation_distance is on point wit 0.4mm
+Vase mode 6 base layers bottom 0.25mm height at 100 mm/s on all perimeters. 0.95 flow with the set rotation_distance is on point with 0.4mm wall width.
 
 
 SET_PRESSURE_ADVANCE ADVANCE=0
@@ -165,9 +206,7 @@ RESTART
 ; Print with input_shaper set
 TUNING_TOWER COMMAND=SET_VELOCITY_LIMIT PARAMETER=ACCEL START=1250 FACTOR=100 BAND=5
 
-The difference between resonance disabled and enabled is mind boggling. The quality is at another level. Rigning is all but banished. Lovely square corners too.
-
-
+The difference between resonance disabled and enabled is mind boggling. The quality is at another level. Ringing is all but banished. Lovely square corners too.
 
 ### Pressure Advance
 
