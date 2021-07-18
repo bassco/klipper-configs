@@ -231,3 +231,15 @@ Calculated result was
 ```text
 pressure_advance: 0.07500
 ```
+
+### Retraction
+
+Retraction calibration can be done by printing the generated [code](calibration/retractioncalibration.com.gcode) from the [retractioncalibration](retractioncalibration.com) website.
+Print the model and view the resultant print to determine the retraction settings for the filament.
+
+#### eSUN PLA+
+
+```shell
+retration_speed: 25mm/s
+retraction_distance: 2.25mm
+```
