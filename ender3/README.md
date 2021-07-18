@@ -221,13 +221,16 @@ Read the [docs](https://www.klipper3d.org/Pressure_Advance.html) on github.
 Print the [CE3_square_tower.stl](calibration/CE3_square_tower.stl) to determine what values to use.
 
 ```shell
+SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY=1 ACCEL=500
+TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=.005
+START_PRINT BED_TEMP=50 EXTRUDER_TEMP=200
 SDCARD_PRINT_FILE FILENAME="calibration/CE3_square_tower.gcode"
 ```
 
 Calculated result was
 
 ```text
-pressure_advance: 0.07500
+pressure_advance: 0.07250 # 14.5mm * 0.005
 ```
 
 ### Retraction
