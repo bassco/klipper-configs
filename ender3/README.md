@@ -60,7 +60,7 @@ PROBE_ACCURACY
 SAVE_CONFIG
 ```
 
-Repeat a final test and then run the BED_MESH_CALIBRATE
+Repeat a final test and then run the BED_MESH_CALIBRATE and SAVE_CONFIG
 
 ### Input Shaper
 
@@ -82,7 +82,7 @@ sudo update-rc.d klipper_mcu defaults
 
 Add the mcu and resonance_tester sections to printer.cfg
 
-```
+```python
 [mcu rpi]
 serial: /tmp/klipper_host_mcu
 
@@ -94,11 +94,14 @@ accel_chip: adxl345
 probe_points:
     100,100,20  # an example
 ```
+Run these commands on the Pi to install the pre-requisite analytical software.
 
-* ~/klippy-env/bin/pip install -v numpy
-* sudo apt install python-numpy python-matplotlib
-
-REBOOT
+```shell
+~/klippy-env/bin/pip install -v numpy
+sudo apt install python-numpy python-matplotlib
+# restart to set the spi config
+sudo reboot
+```
 
 Test the mcu using the cli
 
@@ -109,11 +112,11 @@ gpioinfo|grep spi
 ```
 Test the adxl345 via fluid interface
 
-* G28
 * ACCELEROMETER_QUERY
 * MEASURE_AXES_NOISE
 
 ```text
+G28
 ACCELEROMETER_QUERY
 // adxl345 values (x, y, z): 305.967480, 382.459350, 9179.024400
 MEASURE_AXES_NOISE
@@ -122,7 +125,7 @@ MEASURE_AXES_NOISE
 
 Set the accel values high
 
-```
+```text
 [printer]
 max_accel: 7000
 max_accel_to_decel: 7000
@@ -140,7 +143,7 @@ Change the timestamp as appropriate
 
 X Shaper Result
 
-```
+```shell
 ~/klipper/scripts/calibrate_shaper.py /tmp/resonances_x_20210701_223821.csv -o /tmp/resonances_x_20210701_223821.png
 Fitted shaper 'zv' frequency = 49.4 Hz (vibrations = 15.6%, smoothing ~= 0.069)
 To avoid too much smoothing with 'zv', suggested max_accel <= 9500 mm/sec^2
@@ -197,34 +200,29 @@ shaper_type_x: 2hump_ei
 shaper_freq_y: 46.2
 shaper_type_y: mzv
 ```
+The difference between resonance disabled and enabled is mind boggling. The quality is at another level. Ringing is all but banished. Lovely square corners too.
 
-Print the ringing_tower.stl to confirm that you have good settings.
+### Resonance Testing - the analogue way
+
+Print the [ringing_tower.stl](calibration/ringing_tower.stl) to confirm that you have good settings.
+
+```shell
+SET_PRESSURE_ADVANCE ADVANCE=0
+SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY=1 ACCEL=500
+TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=.005
+SDCARD_PRINT_FILE FILENAME="calibration/ringing_tower.gcode"
+```
 
 Vase mode 6 base layers bottom 0.25mm height at 100 mm/s on all perimeters. 0.95 flow with the set rotation_distance is on point with 0.4mm wall width.
-
-
-SET_PRESSURE_ADVANCE ADVANCE=0
-; disable t
-SET_INPUT_SHAPER SHAPER_FREQ_X=0 SHAPER_FREQ_Y=0
-TUNING_TOWER COMMAND=SET_VELOCITY_LIMIT PARAMETER=ACCEL START=1250 FACTOR=100 BAND=5
-; RESTART
-; Print with input_shaper set
-TUNING_TOWER COMMAND=SET_VELOCITY_LIMIT PARAMETER=ACCEL START=1250 FACTOR=100 BAND=5
-
-The difference between resonance disabled and enabled is mind boggling. The quality is at another level. Ringing is all but banished. Lovely square corners too.
 
 ### Pressure Advance
 
 Read the [docs](https://www.klipper3d.org/Pressure_Advance.html) on github.
+Print the [CE3_square_tower.stl](calibration/CE3_square_tower.stl) to determine what values to use.
 
+```shell
+SDCARD_PRINT_FILE FILENAME="calibration/CE3_square_tower.gcode"
 ```
-SET_PRESSURE_ADVANCE ADVANCE=0
-SET_VELOCITY_LIMIT SQUARE_CORNER_VELOCITY=1 ACCEL=500
-TUNING_TOWER COMMAND=SET_PRESSURE_ADVANCE PARAMETER=ADVANCE START=0 FACTOR=.005
-```
-
-#### Print the test file
-calibration/CE3_square_tower.gcode
 
 Calculated result was
 
