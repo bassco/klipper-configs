@@ -4,3 +4,6 @@ root = true
 
 [*]
 end_of_line = lf
+
+[cura]
+end_of_line = crlf
