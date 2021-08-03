@@ -57,3 +57,4 @@ You will need 4 heat inserts
 
 [howto do heatsets](https://hackaday.com/2019/02/28/threading-3d-printed-parts-how-to-use-heat-set-inserts/) - works really well using the engineers square to press the heatsets flush.It also aligns the heatsets to some extent too.
 
+[Crimping connectors](http://www.mattmillman.com/info/crimpconnectors/) catalogue and usage
