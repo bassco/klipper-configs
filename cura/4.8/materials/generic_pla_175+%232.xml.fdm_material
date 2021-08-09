@@ -170,11 +170,11 @@
     </machine>
     <machine>
       <machine_identifier manufacturer="Creality3D" product="creality_ender3" />
-      <setting key="retraction speed">30.0</setting>
+      <setting key="retraction speed">25.0</setting>
       <setting key="standby temperature">180</setting>
       <setting key="print temperature">235.0</setting>
       <setting key="print cooling">20.0</setting>
-      <setting key="retraction amount">2.0</setting>
+      <setting key="retraction amount">2.25</setting>
     </machine>
     <machine>
       <machine_identifier manufacturer="Creality3D" product="creality_ender5" />
