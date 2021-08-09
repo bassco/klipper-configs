@@ -51,3 +51,21 @@ Spinner cap 42mm - Order No. 7251/86
 The prop rubber for this spinner is available individually as a spare part under article number 7251/65 (for 30mm spinner) and 7251/66 (38-42mm spinner).
 
 [Motor and ESC combo](https://www.kavanrc.com/en/item/combo-set-ray-g3-c2836-1120-ray-g2-30a-regler-80885)
+
+## Materials
+
+### ColorFabb
+
+Below material settings are for the Ender3
+
+#### LW-PLA
+
+* 235C at 55% Flow for foamy matte finish
+
+#### VarioShore TPU
+
+https://www.youtube.com/watch?v=PtYaaBtm3XQ
+https://www.cnckitchen.com/blog/testing-colorfabb-varioshore-tpu-foaming-3d-printing-filament
+
+* Hinges: 200 and 95% Flow - for regular shiny TPU
+* Wheels: 220C and 57% Flow - for foamy grey matte finish
