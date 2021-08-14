@@ -48,3 +48,8 @@ M107      ;fan off
 G28      ;move to endstop
 M84      ;steppers off
 ```
+
+## Filament
+
+
+![Drying times](images/drying_times.png)
