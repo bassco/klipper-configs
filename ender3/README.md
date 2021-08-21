@@ -7,6 +7,7 @@ Standard Ender 3 with the following changes:
 - 3 point bed level plate
 - Micro-Swiss DDE
 - Energetic Spring Steel Smooth PEI printing plate
+- Bondtech 25mm pancake motor (158g)
 
 ## Mechanical Alignment
 
@@ -142,20 +143,23 @@ Change the timestamp as appropriate
 ![](shaper_calibrate_x.png)
 
 X Shaper Result
+- removed stock Creality 42mm extruder motor (282g)
+- replaced with Bondtech 25mm pancake motor model 42H025H-0704-002
 
 ```shell
-~/klipper/scripts/calibrate_shaper.py /tmp/resonances_x_20210701_223821.csv -o /tmp/resonances_x_20210701_223821.png
-Fitted shaper 'zv' frequency = 49.4 Hz (vibrations = 15.6%, smoothing ~= 0.069)
-To avoid too much smoothing with 'zv', suggested max_accel <= 9500 mm/sec^2
-Fitted shaper 'mzv' frequency = 37.8 Hz (vibrations = 1.5%, smoothing ~= 0.143)
-To avoid too much smoothing with 'mzv', suggested max_accel <= 4200 mm/sec^2
-Fitted shaper 'ei' frequency = 44.4 Hz (vibrations = 0.0%, smoothing ~= 0.163)
-To avoid too much smoothing with 'ei', suggested max_accel <= 3700 mm/sec^2
-Fitted shaper '2hump_ei' frequency = 56.6 Hz (vibrations = 0.0%, smoothing ~= 0.168)
-To avoid too much smoothing with '2hump_ei', suggested max_accel <= 3600 mm/sec^2
-Fitted shaper '3hump_ei' frequency = 69.4 Hz (vibrations = 0.0%, smoothing ~= 0.170)
-To avoid too much smoothing with '3hump_ei', suggested max_accel <= 3500 mm/sec^2
-Recommended shaper is ei @ 44.4 Hz
+~/klipper/scripts/calibrate_shaper.py $PWD/resonances_x_20210821_152037.csv -o $PWD/shaper_calibrate_x_20210821_152037.png
+Fitted shaper 'zv' frequency = 58.2 Hz (vibrations = 15.8%, smoothing ~= 0.052)
+To avoid too much smoothing with 'zv', suggested max_accel <= 13200 mm/sec^2
+Fitted shaper 'mzv' frequency = 40.8 Hz (vibrations = 2.0%, smoothing ~= 0.122)
+To avoid too much smoothing with 'mzv', suggested max_accel <= 4900 mm/sec^2
+Fitted shaper 'ei' frequency = 51.2 Hz (vibrations = 0.2%, smoothing ~= 0.123)
+To avoid too much smoothing with 'ei', suggested max_accel <= 4900 mm/sec^2
+Fitted shaper '2hump_ei' frequency = 63.0 Hz (vibrations = 0.0%, smoothing ~= 0.136)
+To avoid too much smoothing with '2hump_ei', suggested max_accel <= 4400 mm/sec^2
+Fitted shaper '3hump_ei' frequency = 77.6 Hz (vibrations = 0.0%, smoothing ~= 0.136)
+To avoid too much smoothing with '3hump_ei', suggested max_accel <= 4400 mm/sec^2
+Recommended shaper is ei @ 51.2 Hz
+ln -sf shaper_calibrate_x_20210821_152037.png shaper_calibrate_x.png
 ```
 
 ![](shaper_calibrate_y.png)
@@ -195,8 +199,8 @@ Set the `[input_shaper]` from the above outputs
 
 ```
 [input_shaper]
-shaper_freq_x: 52.4
-shaper_type_x: 2hump_ei
+shaper_freq_x: 51.2
+shaper_type_x: ei
 shaper_freq_y: 46.2
 shaper_type_y: mzv
 ```
