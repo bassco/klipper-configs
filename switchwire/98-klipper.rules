@@ -1,0 +1,1 @@
+UBSYSTEM=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="614e", ACTION=="add", RUN+="/usr/bin/sudo -u pi /bin/sh -c '/bin/echo RESTART > /tmp/printer'"
