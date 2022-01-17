@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo systemctl stop klipper
+sudo systemctl stop klipper || true
 . ~/klipper_config/klipper.config
 
 : "${BOARD:?'Please export a BOARD variable'}"
@@ -14,20 +14,25 @@ if [ "$USE_RPI" == "yes" ] ; then
   sudo systemctl stop klipper_mcu || true
 fi
 
-pushd ~/klipper
+pushd ~/klipper >/dev/null
+  echo "Updating klipper"
   git pull
 
-  make clean KCONFIG_CONFIG=~/klipper_config/config.$BOARD
-  # make menuconfig KCONFIG_CONFIG=config.$BOARD
-  make KCONFIG_CONFIG=~/klipper_config/config.$BOARD
-  ./scripts/flash-sdcard.sh "$SERIAL" "$BOARD"
-
+  if [ -f "$SERIAL" ]; then
+    echo "Building $BOARD mcu"
+    make clean KCONFIG_CONFIG=~/klipper_config/config.$BOARD
+    # make menuconfig KCONFIG_CONFIG=config.$BOARD
+    make KCONFIG_CONFIG=~/klipper_config/config.$BOARD
+    ./scripts/flash-sdcard.sh "$SERIAL" "$BOARD"
+  else
+    echo "Could not find SERIAL:${SERIAL} - skipping"
+  fi
   if [ "$USE_RPI" == "yes" ]; then
+    echo "Building rpi mcu"
     make clean KCONFIG_CONFIG=~/klipper_config/config.rpi
     # make menuconfig KCONFIG_CONFIG=config.rpi
     make flash KCONFIG_CONFIG=~/klipper_config/config.rpi
-
     sudo systemctl start klipper_mcu || true
   fi
   sudo systemctl start klipper
-popd
+popd >/dev/null
