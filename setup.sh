@@ -26,15 +26,12 @@ git clone git@github.com:bassco/klipper-configs.git
 git config --global user.name "Andrew Basson"
 git config --global user.email "andrew.basson@gmail.com"
 git config --global commit.gpgsign false # Per Linus Torvalds
-git config --global push.gpgsign true # Per Linus Torvalds
+git config --global push.gpgsign false # Per Linus Torvalds
 git config --global user.signingKey 1F373F5E34F9AD64DA773061EE3C12CD162C7F66!
 git config --global alias.logs "log --show-signature"
 
-cd ~/
-mv klipper_config .klipper_config
 
 sudo systemctl stop klipper
-ln -sf "$HOME/dev/klipper-configs/$PRINTER" klipper_config
 # copy the gcode shell command
 curl -sSL -o ~/klipper/klippy/extras/gcode_shell_command.py  https://raw.githubusercontent.com/th33xitus/kiauh/master/resources/gcode_shell_command.py
 chmod +x ~/klipper/klippy/extras/gcode_shell_command.py
@@ -46,6 +43,15 @@ git pull
 mkdir ~/bin
 cd ~/bin
 ln -sf ~/dev/klipper_configs/update-mcu
-./update-mcu
-echo "ready...."
+cd ~/
+PRINTER_SRC="$HOME/dev/klipper-configs/$PRINTER"
+if [ -d "$PRINTER_SRC" ]; then
+  mv klipper_config .klipper_config
+  ln -sf "$PRINTER_SRC" klipper_config
+  ~/bin/update-mcu
+  echo "ready...."
+else 
+  echo "Printer($PRINTER) setup not found"
+  echo "Leaving defaults and klipper stopped"
+fi
 cd ~
