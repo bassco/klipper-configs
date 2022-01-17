@@ -44,10 +44,12 @@ mkdir ~/bin
 cd ~/bin
 ln -sf ~/dev/klipper_configs/update-mcu
 cd ~/
+ln -sf ~/dev/klipper_configs/.bash_aliases
 PRINTER_SRC="$HOME/dev/klipper-configs/$PRINTER"
 if [ -d "$PRINTER_SRC" ]; then
   mv klipper_config .klipper_config
   ln -sf "$PRINTER_SRC" klipper_config
+  ln -sf "$PRINTER_SRC/.bash_aliases_extras" || true
   ~/bin/update-mcu
   echo "ready...."
 else 
