@@ -24,6 +24,7 @@ pushd ~/klipper >/dev/null
     # make menuconfig KCONFIG_CONFIG=config.$BOARD
     make KCONFIG_CONFIG=~/klipper_config/config.$BOARD
     ./scripts/flash-sdcard.sh "$SERIAL" "$BOARD"
+    /bin/cp -fv out/klipper.elf ~/klipper_config/FIRMWARE.BIN
   else
     echo "Could not find SERIAL:${SERIAL} - skipping"
   fi
@@ -32,7 +33,10 @@ pushd ~/klipper >/dev/null
     make clean KCONFIG_CONFIG=~/klipper_config/config.rpi
     # make menuconfig KCONFIG_CONFIG=config.rpi
     make flash KCONFIG_CONFIG=~/klipper_config/config.rpi
+    cp out/klipper.bin ~/klipper_config/klipper.rpi
     sudo systemctl start klipper_mcu || true
   fi
   sudo systemctl start klipper
+  VER=$(git -C . describe --tags --long --dirty)
+  echo "git commit -m \"feat(PRN): klipper compiled at $VER\""
 popd >/dev/null
