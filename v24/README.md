@@ -77,3 +77,10 @@ Updating the firmware
 ```shell
 update-mcu
 ```
+
+Upload the FIRMWARE.BIN to an SDCARD and instert into the board. Press the Reset button. Check the status lights - fast ing blinking, then slow blinking and then off.
+
+Remove the SDCARD and confirm the filename has changed to FIRMWARE.OLD
+
+Do a FIRMWARE_RESTART in the browser and the board should now be recognised and the thermistors should be active.
+
