@@ -1,0 +1,33 @@
+#!/bin/bash
+
+sudo systemctl stop klipper
+. ~/klipper_config/klipper.config
+
+: "${BOARD:?'Please export a BOARD variable'}"
+: "${SERIAL:?'Please export a SERIAL variable'}"
+
+if [ "$USE_RPI" == "yes" ] ; then
+  if [ ! -f /etc/init.d/klipper_mcu ]; then
+    sudo cp ~/klipper/scripts/klipper-mcu-start.sh /etc/init.d/klipper_mcu
+    sudo update-rc.d klipper_mcu defaults
+  fi
+  sudo systemctl stop klipper_mcu || true
+fi
+
+pushd ~/klipper
+  git pull
+
+  make clean KCONFIG_CONFIG=~/klipper_config/config.$BOARD
+  # make menuconfig KCONFIG_CONFIG=config.$BOARD
+  make KCONFIG_CONFIG=~/klipper_config/config.$BOARD
+  ./scripts/flash-sdcard.sh "$SERIAL" "$BOARD"
+
+  if [ "$USE_RPI" == "yes" ]; then
+    make clean KCONFIG_CONFIG=~/klipper_config/config.rpi
+    # make menuconfig KCONFIG_CONFIG=config.rpi
+    make flash KCONFIG_CONFIG=~/klipper_config/config.rpi
+
+    sudo systemctl start klipper_mcu || true
+  fi
+  sudo systemctl start klipper
+popd
