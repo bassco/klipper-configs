@@ -38,6 +38,14 @@ https://github.com/AndrewEllis93/Print-Tuning-Guide
 
 ## Commissioning
 
+* Hotend thermistor wires don't like staying in their crimps on the toolhead board. Maybe the SB board with the Molex connector will be better?
+* Add jumpers to M3-2 to disable to dual-Z and to enable `STEPPER_BUZZ stepper=stepper_z` to actually work.
+* Move the X and Y endstop from (-) to (+)
+* Hall Effect sensor board - Y works, X LED stays lit and goes off when triggered - seems inverted logic. Will swap out board and retest once the cables are moved.
+* Bed temp thermistor wires might have broken off - not getting any readings and MCU shutdown error. Disabled config.
+* Homing X caused the gantry to move down - need to verify what this is - very confusing - used the kill switch on the LCD (checked before issuing the homing command). 
+
+
 ### raspberry pi
 
 * enable SPI
@@ -78,9 +86,11 @@ Updating the firmware
 update-mcu
 ```
 
-Upload the FIRMWARE.BIN to an SDCARD and instert into the board. Press the Reset button. Check the status lights - fast ing blinking, then slow blinking and then off.
+Upload the FIRMWARE.BIN to an SDCARD and insert into the board. Press the Reset button once, maybe twice. Check the status lights - fast blinking, then slow blinking and then off.
 
-Remove the SDCARD and confirm the filename has changed to FIRMWARE.OLD
+Remove the SDCARD and confirm the filename has changed to OLD.BIN
 
 Do a FIRMWARE_RESTART in the browser and the board should now be recognised and the thermistors should be active.
 
+
+###
