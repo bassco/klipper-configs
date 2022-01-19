@@ -45,6 +45,19 @@ https://github.com/AndrewEllis93/Print-Tuning-Guide
 * Bed temp thermistor wires might have broken off - not getting any readings and MCU shutdown error. Disabled config.
 * Homing X caused the gantry to move down - need to verify what this is - very confusing - used the kill switch on the LCD (checked before issuing the homing command). 
 
+### PID Calibrate
+
+Set fan to 40% and calibrate the heater for the hot end.
+
+```gcode
+M106 S102
+PID_CALIBRATE heater=extruder TARGET=240
+SAVE_CONFIG
+```
+Extruder settings:
+```shell
+pid_Kp=24.058 pid_Ki=1.471 pid_Kd=98.339
+```
 
 ### raspberry pi
 
