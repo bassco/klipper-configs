@@ -58,6 +58,8 @@ Extruder settings:
 ```shell
 pid_Kp=24.058 pid_Ki=1.471 pid_Kd=98.339
 ```
+TODO: why is the hotend fan not running....
+* set the controller fan and hotend fan to run for diagnosing crimps and pins
 
 ### raspberry pi
 
@@ -67,7 +69,7 @@ pid_Kp=24.058 pid_Ki=1.471 pid_Kd=98.339
 Edit `/boot/config.txt` and disable the BT stack to run the GPIO between the spider and the pi.
 See the [rpi config](config.txt) for details - just replace the file and reboot.
  
-#### change locale
+	#### change locale
 
 Set en_GB.UTF-8 in localisation `sudo raspi-config` and then update the locale defaults file too.
 
