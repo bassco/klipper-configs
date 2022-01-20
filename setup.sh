@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 PRINTER="$1:?'Please provide a printer to install'"
+KLIPPER_CONFIGS=~/dev/klipper-configs
 cd ~/
 echo "[Enter] to fix the sudo access for the pi user"
 read -r foo
@@ -42,9 +43,9 @@ cd ~/klipper
 git pull
 mkdir ~/bin
 cd ~/bin
-ln -sf ~/dev/klipper_configs/update-mcu
+ln -sf $KLIPPER_CONFIGS/update-mcu
 cd ~/
-ln -sf ~/dev/klipper_configs/.bash_aliases
+ln -sf $KLIPPER_CONFIGS/.bash_aliases
 PRINTER_SRC="$HOME/dev/klipper-configs/$PRINTER"
 if [ -d "$PRINTER_SRC" ]; then
   mv klipper_config .klipper_config
