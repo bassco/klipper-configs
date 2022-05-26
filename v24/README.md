@@ -102,6 +102,13 @@ Updating the firmware
 update-mcu
 ```
 
+The following error is expected - as the rpi is connected internally via uart and the USB port is not used for connection. Need to manually copy the out/klipper.bin to FIRMWARE.BIN on an SDCard.
+
+```shell
+SPIFlashError: Failed to Initialize SD Card. Is it inserted?
+```
+
+
 Upload the FIRMWARE.BIN to an SDCARD and insert into the board. Press the Reset button once, maybe twice. Check the status lights - fast blinking, then slow blinking and then off.
 
 Remove the SDCARD and confirm the filename has changed to OLD.BIN
