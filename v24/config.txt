@@ -70,3 +70,4 @@ max_framebuffers=2
 start_x=1
 gpu_mem=128
 enable_uart=1
+dtoverlay=disable-bt
