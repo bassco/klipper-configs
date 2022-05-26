@@ -4,6 +4,8 @@ klipper 3d printer configs for the machines that I run
 
 - [Ender3](ender3/README.md)
 - [Kossel](kossel/LPC.md)
+- [Switchwire](switchwire/README.md)
+- [Voron v2.4](v24/README.md)
 
 ## Start GCODE
  ### ideaMaker template
