@@ -44,6 +44,8 @@ https://github.com/AndrewEllis93/Print-Tuning-Guide
 * Hall Effect sensor board - Y works, X LED stays lit and goes off when triggered - seems inverted logic. Will swap out board and retest once the cables are moved.
 * Bed temp thermistor wires might have broken off - not getting any readings and MCU shutdown error. Disabled config.
 * Homing X caused the gantry to move down - need to verify what this is - very confusing - used the kill switch on the LCD (checked before issuing the homing command). 
+* Terrible metal on metal squeak was the Z accent covers that were running on the pulleys - added little plastic spacers and longer screws
+* The SSR was not coming on and heating the bed. You need to supply 24v to the BED_IN terminals on the board. Created jumper wires from the 24V in wires to brodge to the BED_IN and that sorted it out.
 
 ### PID Calibrate
 
