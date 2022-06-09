@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# https://discordapp.com/channels/460117602945990666/969563854071799818/976556613760593950
+
+git remote add probe-drop-first https://github.com/hifihedgehog/klipper.git
+git fetch probe-drop-first
+git cherry-pick ad23f41ce542b8a637ef91a57dad5d4e2ee7b6f1
+sudo service klipper restart
