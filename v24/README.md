@@ -119,3 +119,79 @@ Do a FIRMWARE_RESTART in the browser and the board should now be recognised and 
 ###
 
 Good tips for the Voron from Kapman's Basement Workshop on (YT){https://www.youtube.com/watch?v=-DcdVez_v5Q}
+
+### Input Shaper
+
+`SHAPER_CALIBRATE` is a short-cut for X and Y TEST_RESONANCE and can SAVE_CONFIG the calculated values.
+
+```console
+0:12:25 
+// Calculating the best input shaper parameters for x axis
+20:12:28 
+// Fitted shaper 'zv' frequency = 49.6 Hz (vibrations = 5.2%, smoothing ~= 0.069)
+20:12:28 
+// To avoid too much smoothing with 'zv', suggested max_accel <= 9600 mm/sec^2
+20:12:32 
+// Fitted shaper 'mzv' frequency = 48.4 Hz (vibrations = 1.3%, smoothing ~= 0.087)
+20:12:32 
+// To avoid too much smoothing with 'mzv', suggested max_accel <= 6900 mm/sec^2
+20:12:35 
+// Fitted shaper 'ei' frequency = 54.4 Hz (vibrations = 0.0%, smoothing ~= 0.109)
+20:12:35 
+// To avoid too much smoothing with 'ei', suggested max_accel <= 5500 mm/sec^2
+20:12:38 
+// Fitted shaper '2hump_ei' frequency = 59.0 Hz (vibrations = 0.0%, smoothing ~= 0.155)
+20:12:38 
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 3900 mm/sec^2
+20:12:42 
+// Fitted shaper '3hump_ei' frequency = 86.6 Hz (vibrations = 0.0%, smoothing ~= 0.109)
+20:12:42 
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 5500 mm/sec^2
+20:12:42 
+// Recommended shaper_type_x = mzv, shaper_freq_x = 48.4 Hz
+20:12:42 
+// Shaper calibration data written to /tmp/calibration_data_x_20220611_200739.csv file
+20:12:42 
+// Calculating the best input shaper parameters for y axis
+20:12:45 
+// Fitted shaper 'zv' frequency = 59.8 Hz (vibrations = 31.2%, smoothing ~= 0.050)
+20:12:45 
+// To avoid too much smoothing with 'zv', suggested max_accel <= 13900 mm/sec^2
+20:12:48 
+// Fitted shaper 'mzv' frequency = 37.2 Hz (vibrations = 5.8%, smoothing ~= 0.147)
+20:12:49 
+// To avoid too much smoothing with 'mzv', suggested max_accel <= 4100 mm/sec^2
+20:12:52 
+// Fitted shaper 'ei' frequency = 50.6 Hz (vibrations = 8.3%, smoothing ~= 0.126)
+20:12:52 
+// To avoid too much smoothing with 'ei', suggested max_accel <= 4800 mm/sec^2
+20:12:55 
+// Fitted shaper '2hump_ei' frequency = 46.8 Hz (vibrations = 0.8%, smoothing ~= 0.246)
+20:12:55 
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 2400 mm/sec^2
+20:12:59 
+// Fitted shaper '3hump_ei' frequency = 51.8 Hz (vibrations = 0.0%, smoothing ~= 0.305)
+20:12:59 
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 1800 mm/sec^2
+20:12:59 
+// Recommended shaper_type_y = 2hump_ei, shaper_freq_y = 46.8 Hz
+20:12:59 
+// Shaper calibration data written to /tmp/calibration_data_y_20220611_200739.csv file
+20:12:59 
+// The SAVE_CONFIG command will update the printer config file
+// with these parameters and restart the printer.
+```
+
+Saved values.
+
+```console
+[input_shaper]
+shaper_type_x = mzv
+shaper_freq_x = 48.4
+shaper_type_y = 2hump_ei
+shaper_freq_y = 46.8
+```
+
+[x axis](shaper_calibration_x_20220611_200739.png)
+[y axis](shaper_calibration_y_20220611_200739.png)
+
