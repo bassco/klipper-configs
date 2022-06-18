@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PRINTER="$1:?'Please provide a printer to install'"
+PRINTER=${1:?'Please provide \$1 with a printer to install'}
 KLIPPER_CONFIGS=~/dev/klipper-configs
 cd ~/
 echo "[Enter] to fix the sudo access for the pi user"
@@ -11,31 +11,41 @@ read -r foo
 sudo vi /etc/inputrc
 echo "Setup ssh"
 mkdir ~/.ssh || true
-sudo mv /boot/authourized_hosts.txt .ssh/authorized_hosts
+sudo mv /boot/authourized_hosts.txt .ssh/authourized_keys
 chmod 700 ~/.ssh
-chmod 0600 .ssh/authourized_hosts
+chmod 0600 .ssh/authourized_keys
 echo "[Enter] to set hostname, timezone and update the tool"
-sudo raspi-config
+echo "export EDITOR=vim" >> ~/.bash_profile
+. ~/.bash_profile
+sudo timedatectl set-timezone Europe/Berlin
 sudo apt update
 sudo apt get upgrade
-~/klippy-env/bin/pip install -v numpy
-sudo apt install -y vim python-numpy python-matplotlib
-
+sudo apt install -y vim python3-numpy python3-matplotlib ripgrep libatlas-base-dev packagekit
+sudo raspi-config
+sudo pip3 install --upgrade pip --system
+sudo pip3 install pandas --system
+sudo hostnamectl set-hostname $PRINTER
 mkdir ~/dev
 cd ~/dev
-git clone git@github.com:bassco/klipper-configs.git
 git config --global user.name "Andrew Basson"
 git config --global user.email "andrew.basson@gmail.com"
-git config --global commit.gpgsign false # Per Linus Torvalds
-git config --global push.gpgsign false # Per Linus Torvalds
+git config --global commit.gpgsign  false # Per Linus Torvalds
+git config --global push.gpgsign  false # Per Linus Torvalds
 git config --global user.signingKey 1F373F5E34F9AD64DA773061EE3C12CD162C7F66!
+git config pull.rebase true
 git config --global alias.logs "log --show-signature"
-
-
+git clone git@github.com:bassco/klipper-configs.git
+~/moonraker/scripts/set-policykit-rules.sh
+sudo systemctl restart dbus
+sudo systemctl restart moonraker
 sudo systemctl stop klipper
 # copy the gcode shell command
 curl -sSL -o ~/klipper/klippy/extras/gcode_shell_command.py  https://raw.githubusercontent.com/th33xitus/kiauh/master/resources/gcode_shell_command.py
 chmod +x ~/klipper/klippy/extras/gcode_shell_command.py
+if [ $INSTALL_AUTO_Z == "y" ]; then
+  git clone https://github.com/protoloft/klipper_z_calibration.git ~/z_calibration
+  ln -sf ~/z_calibration/z_calibration.py ~/klipper/klippy/extras/
+fi
 # copy the github backup script
 # would be nice to add the github commit to the "save" button in the UI
 #sudo systemctl start klipper
@@ -58,3 +68,5 @@ else
   echo "Leaving defaults and klipper stopped"
 fi
 cd ~
+# set python binaries to local path
+. ~/.bashrc
