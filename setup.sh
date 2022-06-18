@@ -20,7 +20,7 @@ echo "export EDITOR=vim" >> ~/.bash_profile
 sudo timedatectl set-timezone Europe/Berlin
 sudo apt update
 sudo apt get upgrade
-sudo apt install -y vim python3-numpy python3-matplotlib ripgrep libatlas-base-dev packagekit
+sudo apt install -y vim python3-numpy python3-matplotlib ripgrep libatlas-base-dev packagekit dos2unix
 sudo raspi-config
 sudo pip3 install --upgrade pip --system
 sudo pip3 install pandas --system
