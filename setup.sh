@@ -2,6 +2,10 @@
 
 PRINTER=${1:?'Please provide \$1 with a printer to install'}
 KLIPPER_CONFIGS=~/dev/klipper-configs
+sudo apt update
+sudo apt get upgrade
+sudo apt install -y vim python3-numpy python3-matplotlib ripgrep libatlas-base-dev packagekit dos2unix
+export EDITOR=vim VISUAL=vim
 cd ~/
 echo "[Enter] to fix the sudo access for the pi user"
 read -r foo
@@ -14,17 +18,11 @@ mkdir ~/.ssh || true
 sudo mv /boot/authourized_hosts.txt .ssh/authourized_keys
 chmod 700 ~/.ssh
 chmod 0600 .ssh/authourized_keys
-echo "[Enter] to set hostname, timezone and update the tool"
-echo "export EDITOR=vim" >> ~/.bash_profile
-. ~/.bash_profile
 sudo timedatectl set-timezone Europe/Berlin
-sudo apt update
-sudo apt get upgrade
-sudo apt install -y vim python3-numpy python3-matplotlib ripgrep libatlas-base-dev packagekit dos2unix
-sudo raspi-config
+sudo hostnamectl set-hostname $PRINTER
 sudo pip3 install --upgrade pip --system
 sudo pip3 install pandas --system
-sudo hostnamectl set-hostname $PRINTER
+sudo raspi-config
 mkdir ~/dev
 cd ~/dev
 git config --global user.name "Andrew Basson"
@@ -56,6 +54,7 @@ cd ~/bin
 ln -sf $KLIPPER_CONFIGS/update-mcu
 cd ~/
 ln -sf $KLIPPER_CONFIGS/.bash_aliases
+ln -sf $KLIPPER_CONFIGS/.bash_profile
 PRINTER_SRC="$HOME/dev/klipper-configs/$PRINTER"
 if [ -d "$PRINTER_SRC" ]; then
   mv klipper_config .klipper_config
@@ -68,5 +67,5 @@ else
   echo "Leaving defaults and klipper stopped"
 fi
 cd ~
-# set python binaries to local path
+# set environment aliases and variables
 . ~/.bashrc
