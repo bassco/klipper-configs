@@ -1,0 +1,27 @@
+# v0.1006
+
+## The specs:
+
+Voron v0.1 v0.1006 from chsh:
+- LDO Frame
+- ZODIAC x Phaetus BMO Hotend
+- SKR Mini E3 V2.0 Board
+- MGN9C Rail on X (2x MGN7H spare rails are available, so you could change it back if you want)
+- Sharkfin Extruder [repo](https://github.com/KayosMaker/Sailfin-Extruder/tree/main/Usermods/KayosMaker)
+- Fermio Heatbed
+- GraviFlex Magnetic Sheet
+- Raspberry Pi Zero 2 W
+- OLED Screen
+- Rear Klicky Sensor
+- Normal Z Endstop is mounted, so you use that as well
+- Utility Belt
+- Umbilical PCB Upgrade
+- 2x Spring Steel Platte with Smooth PEI
+- 2x Spare Smooth PEI
+- 1x Double Sided Textured PEI Sheet
+
+## config
+
+Original config was provided by Christoph
+
+Converted home and probe to use upstream klicky-macros.
