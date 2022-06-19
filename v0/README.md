@@ -25,3 +25,6 @@ Voron v0.1 v0.1006 from chsh:
 Original config was provided by Christoph
 
 Converted home and probe to use upstream klicky-macros.
+
+
+[TEST_SPEED.cfg](https://raw.githubusercontent.com/AndrewEllis93/Print-Tuning-Guide/main/macros/TEST_SPEED.cfg) from Andrew Ellis, see the instructions, [here](https://github.com/AndrewEllis93/Print-Tuning-Guide/blob/main/articles/determining_max_speeds_accels.md#usage-of-the-test_speed-macro=).
