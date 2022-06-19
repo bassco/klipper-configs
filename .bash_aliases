@@ -1,4 +1,4 @@
-export EDITOR=vim
+export EDITOR=vim VISUAL=vim
 export GPG_TTY=$(tty)
 export LC_ALL="$LANG"
 export LANGUAGE="$LANG"
@@ -13,4 +13,3 @@ function printer(){
  cd ~/dev/klipper-configs/$PRINTER
 }
 . ~/.bash_aliases_extras 2>/dev/null
-export PATH=/home/pi/.local/bin:${PATH}
