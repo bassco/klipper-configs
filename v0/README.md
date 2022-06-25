@@ -26,8 +26,21 @@ Original config was provided by Christoph
 
 Converted home and probe to use upstream klicky-macros.
 
+## macros
 
 [TEST_SPEED.cfg](https://raw.githubusercontent.com/AndrewEllis93/Print-Tuning-Guide/main/macros/TEST_SPEED.cfg) from Andrew Ellis, see the instructions, [here](https://github.com/AndrewEllis93/Print-Tuning-Guide/blob/main/articles/determining_max_speeds_accels.md#usage-of-the-test_speed-macro=).
+
+* [AndrewEllis](https://github.com/AndrewEllis93/v2.247_backup_klipper_config/blob/master/macros.cfg)
+* https://github.com/zellneralex/klipper_config
+
+### PIF slicer profiles to learn from
+
+[Stephan - landofschnitzel](https://github.com/Stephan3/Schnitzelslicerrepo)
+[Andrew Ellis](https://github.com/AndrewEllis93/Ellis-PIF-Profile)
+
+### things I found that could be useful
+
+[thermal tape for heat sinks](https://www.amazon.de/dp/B07CSR6NJC)
 
 ### resonance testing
 
@@ -47,4 +60,3 @@ shaper_freq_y: 82.6
 shaper_type_y: mzv
 
 ```
-
