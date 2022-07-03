@@ -28,3 +28,23 @@ Converted home and probe to use upstream klicky-macros.
 
 
 [TEST_SPEED.cfg](https://raw.githubusercontent.com/AndrewEllis93/Print-Tuning-Guide/main/macros/TEST_SPEED.cfg) from Andrew Ellis, see the instructions, [here](https://github.com/AndrewEllis93/Print-Tuning-Guide/blob/main/articles/determining_max_speeds_accels.md#usage-of-the-test_speed-macro=).
+
+### resonance testing
+
+Results:
+
+[X shaper](docs/shaper_x.png)
+[Y shaper](docs/shaper_y.png)
+
+```python
+[resonance_tester]: 
+accel_chip: adxl345
+probe_points:
+    60,60,40
+shaper_freq_x: 123.6
+shaper_type_x: mzv
+shaper_freq_y: 82.6
+shaper_type_y: mzv
+
+```
+
