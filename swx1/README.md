@@ -40,15 +40,6 @@ The LCD is alive with a nice BLUE hue from the below config!
 ![LCD is alive](lcd-is-alive.png)
 
 ```python
-[board_pins]
-aliases:
-    # Common EXP1 header found on many "all-in-one" ramps clones
-    EXP1_1=ar37, EXP1_3=ar17, EXP1_5=ar23, EXP1_7=ar27, EXP1_9=<GND>,
-    EXP1_2=ar35, EXP1_4=ar16, EXP1_6=ar25, EXP1_8=ar29, EXP1_10=<5V>,
-    # EXP2 header
-    EXP2_1=ar50, EXP2_3=ar31, EXP2_5=ar33, EXP2_7=ar49, EXP2_9=<GND>,
-    EXP2_2=ar52, EXP2_4=ar53, EXP2_6=ar51, EXP2_8=<RST>, EXP2_10=ar41
-
 ######################################################################
 # Fysetc Mini 12864Panel v2.1 (with neopixel backlight leds)
 ######################################################################
