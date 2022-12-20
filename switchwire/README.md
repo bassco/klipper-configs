@@ -37,6 +37,15 @@ Covers flipped on the screen and the wires were crossed - LCD is now working
 * Check fan connection - Hotend Cooling
 * z offset
 
+## flashing
+
+```console
+cd ~/klipper
+sudo systemctl stop klipper
+./scripts/flash-sdcard.sh /dev/ttyACM0 btt-skr-v1.3
+sudo systemctl start klipper
+```
+
 ## Fixed
 
 ### SKR 1.3 usb port missing
