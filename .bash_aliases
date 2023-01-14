@@ -13,3 +13,4 @@ function printer(){
  cd ~/dev/klipper-configs/$PRINTER
 }
 . ~/.bash_aliases_extras 2>/dev/null
+alias temp="/usr/bin/vcgencmd measure_temp"
