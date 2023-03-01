@@ -46,7 +46,8 @@
 #dtparam=i2c_arm=on
 #dtparam=i2s=on
 dtparam=spi=on
-dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000
+# Below line if for the Waveehare RS485 CAN HAT that can run at max 250k baud
+# dtoverlay=mcp2515-can0,oscillator=12000000,interrupt=25,spimaxfrequency=2000000
 
 # Uncomment this to enable infrared communication.
 #dtoverlay=gpio-ir,gpio_pin=17
