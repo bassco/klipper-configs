@@ -2,31 +2,32 @@
 
 [Board](https://github.com/FYSETC/FYSETC-SPIDER)
 
-Carbon filter
-Nevermore ?? yes
+* Carbon filter: Nevermore - yes - configure needs to be done and also needs reprinting as the cover has warped and is no longer air tight.
+* GE5C bearing mod - yes - https://github.com/hartk1213/MISC/tree/main/Voron%20Mods/Voron%202/2.4/Voron2.4_GE5C
+* Pins mod for MGN12 -  yes
+* Stealthburner and CW2
+* Phaetus Dragon with Zodiac Coated nozzle
+* SB2040 CanBus v1 from Mellow
+* Mellow Fly-UtoC-1 - Does not require a R120 jumper. Yellow is H and White is L. 
+* Voron Tap - for z nozzle probe
+* RGB Chamber Lights from oc_geek
+* Bed Wagos from deepfriedhero.in https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/deepfriedheroin/v2_bed_wagos
+* https://www.thingiverse.com/thing:4817974 or https://www.thingiverse.com/thing:4828117 or https://github.com/Ramalama2/Voron-2-Mods/tree/main/Wagomount_221
+* Klipper Expander for Neopixels for the Stealthburner - installed - needs flashing and new [mcu expander](https://github.com/VoronDesign/Voron-Hardware/tree/master/Klipper_Expander/Documentation) section.
+* Ramalama2 front-idlers
+* https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/edwardyeeks/Decontaminator_Purge_Bucket_%26_Nozzle_Scrubber
+* https://github.com/nevermore3d/Nevermore_Micro
+* https://github.com/tanaes/whopping_Voron_mods/tree/main/extrusion_backers
+* 3010 fan mod for electronics cover for SB204 on CW2 - to be added
 
-GE5C bearing mod? https://github.com/hartk1213/MISC/tree/main/Voron%20Mods/Voron%202/2.4/Voron2.4_GE5C
-Pins mod for MGN12? yes
-Stealthburner and CW2
-Phaetus Dragon with Zodiac Coated nozzle
-SB2040 CanBus v1 from Mellow
-Waveshare Pi Can Hat RS485 - [docs](https://www.waveshare.com/rs485-can-hat.htm)
-Voron Tap - for z nozzle probe
-RGB Lights from oc_geek
-Bed Wagos from deepfriedghero.in https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/deepfriedheroin/v2_bed_wagos
-https://www.thingiverse.com/thing:4817974 or https://www.thingiverse.com/thing:4828117 or https://github.com/Ramalama2/Voron-2-Mods/tree/main/Wagomount_221
-Klipper Expander for Neopixels for the Stealthburner - todo 
+Interesting research projects
 
-https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/edwardyeeks/Decontaminator_Purge_Bucket_%26_Nozzle_Scrubber
+* https://github.com/alchemyEngine/measure_thermal_behavior/blob/main/process_frame_expansion.py
+* Adaptive meshing 
 
-
-https://github.com/nevermore3d/Nevermore_Micro
-https://github.com/tanaes/whopping_Voron_mods/tree/main/extrusion_backers
-https://github.com/alchemyEngine/measure_thermal_behavior/blob/main/process_frame_expansion.py
-
-
-DELTA BFB0524HH BLOWER FAN - 5015 blower for part cooling
-NMB 4010 SS-24N-AT-00 
+CW2:
+* DELTA BFB0524HH BLOWER FAN - 5015 blower for part cooling
+* NMB 4010 SS-24N-AT-00 
 
 Wiring: https://cdn.discordapp.com/attachments/624317225540780055/928014037734801408/20220104_191958.jpg
 
@@ -42,13 +43,12 @@ Coverted to CANBus when installing StealthBurner and Voron Tap
 
 i.e. the SB2040 - needs CanBoot to allow klipper to flash remotely. Then we install klipper in the program space of the device.
 
-Jumpers for sensorless homing installed on the X and Y drivers.
+Jumpers for sensorless homing installed on the X and Y drivers. -  trigger positions to be tested and set
 
 
 
 
 https://www.klipper3d.org/CANBUS.html
-https://www.waveshare.com/rs485-can-hat.htm
 https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 
 ## Commissioning
