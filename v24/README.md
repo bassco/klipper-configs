@@ -13,8 +13,7 @@
 * RGB Chamber Lights from oc_geek
 * Bed Wagos from deepfriedhero.in https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/deepfriedheroin/v2_bed_wagos
 * https://www.thingiverse.com/thing:4817974 or https://www.thingiverse.com/thing:4828117 or https://github.com/Ramalama2/Voron-2-Mods/tree/main/Wagomount_221
-* Klipper Expander for Neopixels for the Stealthburner - installed - needs flashing and new [mcu expander](https://github.com/VoronDesign/Voron-Hardware/tree/master/Klipper_Expander/Documentation) section.
-* Ramalama2 front-idlers
+* Ramalama2 [front-idlers](https://github.com/Ramalama2/Voron-2-Mods/tree/main/Front_Idlers)
 * https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/edwardyeeks/Decontaminator_Purge_Bucket_%26_Nozzle_Scrubber
 * https://github.com/nevermore3d/Nevermore_Micro
 * https://github.com/tanaes/whopping_Voron_mods/tree/main/extrusion_backers
@@ -23,14 +22,14 @@
 Interesting research projects
 
 * https://github.com/alchemyEngine/measure_thermal_behavior/blob/main/process_frame_expansion.py
-* Adaptive meshing 
+* [Adaptive meshing](https://github.com/kyleisah/Klipper-Adaptive-Meshing-Purging) with Exclude Object enabled, which I have
+* [Probe Accuracy](https://github.com/sporkus/probe_accuracy_tests) for z corner pulley tension adjustment 
 
 CW2:
 * DELTA BFB0524HH BLOWER FAN - 5015 blower for part cooling
 * NMB 4010 SS-24N-AT-00 
 
 Wiring: https://cdn.discordapp.com/attachments/624317225540780055/928014037734801408/20220104_191958.jpg
-
 
 https://github.com/AndrewEllis93/Ellis-PIF-Profile
 https://github.com/AndrewEllis93/Print-Tuning-Guide
@@ -44,9 +43,6 @@ Coverted to CANBus when installing StealthBurner and Voron Tap
 i.e. the SB2040 - needs CanBoot to allow klipper to flash remotely. Then we install klipper in the program space of the device.
 
 Jumpers for sensorless homing installed on the X and Y drivers. -  trigger positions to be tested and set
-
-
-
 
 https://www.klipper3d.org/CANBUS.html
 https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
