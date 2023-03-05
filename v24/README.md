@@ -67,9 +67,9 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
   - [x] Part Cooling
   - [x] Hotend Cooling
   - [ ] Extruder 3010/3070 fan not working - ripped pads?
-- [ ] Sensorless
-  - [ ] x direction and sensitivity
-  - [ ] y direction and sensitivity
+- [x] Sensorless
+  - [x] x direction and sensitivity
+  - [x] y direction and sensitivity
 - [x] Hotend
   - [x] temp sensor
   - [x] heater
@@ -79,6 +79,62 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
   - [ ] add led colour statuses to print macros
 - [x] Tap Probe
   - [x] endstop working
+  - [x] tap speed 6mm/s
+- [ ] homing override
+  - [ ] x does not z hop - can hit bed if not qgl
+  - [ ] y does not z hop - can hit bed if not qgl
+  - [ ] z does not centre toolhead at x150 and y150
+
+### tap probe speed validation
+
+```console
+cd ~/probe_accuracy_tests
+
+pi@v24:~/probe_accuracy_tests $ python3 $HOME/probe_accuracy_tests/probe_accuracy_test_suite.py --speedtest
+Warning: gcode_macro _User_Variables.safe_z is not configured
+Safe z has not been set in klicky-variables
+Enter safe z height to avoid crash:20
+
+Test a range of z-probe speed
+
+Minimum speed?  3
+Maximum speed?  10
+Steps between speeds?  1
+3.0mm/s...4.0mm/s...5.0mm/s...6.0mm/s...7.0mm/s...8.0mm/s...9.0mm/s...10.0mm/s...Done
+           min       max     first      last      mean       std  count     range     drift
+test
+3.0   0.621250  0.633125  0.633125  0.622500  0.623875  0.003357     10  0.011875 -0.010625
+4.0   0.622500  0.624375  0.622500  0.623750  0.623188  0.000622     10  0.001875  0.001250
+5.0   0.625000  0.626250  0.625000  0.626250  0.625625  0.000417     10  0.001250  0.001250
+6.0   0.627500  0.628125  0.628125  0.628125  0.627875  0.000323     10  0.000625  0.000000
+7.0   0.628750  0.629375  0.629375  0.629375  0.629125  0.000323     10  0.000625  0.000000
+8.0   0.628125  0.628750  0.628125  0.628750  0.628500  0.000323     10  0.000625  0.000625
+9.0   0.631250  0.632500  0.631875  0.631250  0.631812  0.000461     10  0.001250 -0.000625
+10.0  0.628125  0.629375  0.628750  0.628750  0.628500  0.000437     10  0.001250  0.000000
+--------------------------------------------------------------------------------
+```
+
+### first corner test
+
+```console
+pi@v24:~/probe_accuracy_tests $ python3 $HOME/probe_accuracy_tests/probe_accuracy_test_suite.py --corner
+Leveling
+Warning: gcode_macro _User_Variables.safe_z is not configured
+Safe z has not been set in klicky-variables
+Enter safe z height to avoid crash:20
+
+Test probe around the bed to see if there are issues with individual drives
+Leveling
+4...3...2...1...Done
+                                   min       max     first     last      mean       std  count     range     drift
+test
+1:corner 30samples (40, 260)   0.73125  0.753125  0.753125  0.73500  0.735854  0.003937     30  0.021875 -0.018125
+2:corner 30samples (260, 260)  0.73500  0.741250  0.735000  0.74125  0.739375  0.001228     30  0.006250  0.006250
+3:corner 30samples (40, 40)    0.76000  0.769375  0.761250  0.76625  0.765688  0.002078     30  0.009375  0.005000
+4:corner 30samples (260, 40)   0.77250  0.790625  0.772500  0.78750  0.783625  0.004828     30  0.018125  0.015000
+--------------------------------------------------------------------------------
+```
+
 
 ### PID Calibrate
 
