@@ -58,6 +58,28 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 * Terrible metal on metal squeak was the Z accent covers that were running on the pulleys - added little plastic spacers and longer screws
 * The SSR was not coming on and heating the bed. You need to supply 24v to the BED_IN terminals on the board. Created jumper wires from the 24V in wires to brodge to the BED_IN and that sorted it out.
 
+### sb2040 and tap commissioning
+
+- [x] Extruder
+  - [x] direction is good
+  - [ ] calibrate steps
+- [ ] Fans
+  - [x] Part Cooling
+  - [x] Hotend Cooling
+  - [ ] Extruder 3010/3070 fan not working - ripped pads?
+- [ ] Sensorless
+  - [ ] x direction and sensitivity
+  - [ ] y direction and sensitivity
+- [x] Hotend
+  - [x] temp sensor
+  - [x] heater
+- [x] Leds
+  - [ ] stealthburner leds showing
+  - [ ] add led colours to menu
+  - [ ] add led colour statuses to print macros
+- [x] Tap Probe
+  - [x] endstop working
+
 ### PID Calibrate
 
 Set fan to 40% and calibrate the heater for the hot end.
