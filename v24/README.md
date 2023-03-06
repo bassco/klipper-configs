@@ -284,3 +284,66 @@ shaper_freq_y = 46.8
 [x axis](shaper_calibration_x_20220611_200739.png)
 [y axis](shaper_calibration_y_20220611_200739.png)
 
+### sb2040 Input Shaper after umbilical and tap
+
+```console
+22:59:25 
+// Fitted shaper 'ei' frequency = 64.8 Hz (vibrations = 0.0%, smoothing ~= 0.077)
+22:59:25 
+// To avoid too much smoothing with 'ei', suggested max_accel <= 7800 mm/sec^2
+22:59:28 
+// Fitted shaper '2hump_ei' frequency = 80.6 Hz (vibrations = 0.0%, smoothing ~= 0.083)
+22:59:28 
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 7200 mm/sec^2
+22:59:32 
+// Fitted shaper '3hump_ei' frequency = 96.2 Hz (vibrations = 0.0%, smoothing ~= 0.089)
+22:59:32 
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 6800 mm/sec^2
+22:59:32 
+// Recommended shaper_type_x = zv, shaper_freq_x = 52.6 Hz
+22:59:32 
+// Shaper calibration data written to /tmp/calibration_data_x_20230306_225431.csv file
+22:59:32 
+// Calculating the best input shaper parameters for y axis
+22:59:35 
+// Fitted shaper 'zv' frequency = 44.0 Hz (vibrations = 2.3%, smoothing ~= 0.085)
+22:59:35 
+// To avoid too much smoothing with 'zv', suggested max_accel <= 7500 mm/sec^2
+22:59:38 
+// Fitted shaper 'mzv' frequency = 43.4 Hz (vibrations = 0.0%, smoothing ~= 0.108)
+22:59:38 
+// To avoid too much smoothing with 'mzv', suggested max_accel <= 5500 mm/sec^2
+22:59:42 
+// Fitted shaper 'ei' frequency = 51.8 Hz (vibrations = 0.0%, smoothing ~= 0.120)
+22:59:42 
+// To avoid too much smoothing with 'ei', suggested max_accel <= 5000 mm/sec^2
+22:59:45 
+// Fitted shaper '2hump_ei' frequency = 64.4 Hz (vibrations = 0.0%, smoothing ~= 0.130)
+22:59:45 
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 4600 mm/sec^2
+22:59:49 
+// Fitted shaper '3hump_ei' frequency = 77.0 Hz (vibrations = 0.0%, smoothing ~= 0.138)
+22:59:49 
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 4300 mm/sec^2
+22:59:49 
+// Recommended shaper_type_y = mzv, shaper_freq_y = 43.4 Hz
+22:59:49 
+// Shaper calibration data written to /tmp/calibration_data_y_20230306_225431.csv file
+22:59:49 
+// The SAVE_CONFIG command will update the printer config file
+// with these parameters and restart the printer.
+```
+ 
+See the resonance testing at [docs](https://www.klipper3d.org/Measuring_Resonances.html) site.
+
+Use raw_data OUTPUT to be able to create graphs
+
+```console
+SET_INPUT_SHAPER SHAPER_FREQ_X=0 SHAPER_FREQ_Y=0
+TEST_RESONANCES AXIS=X OUTPUT=raw_data
+TEST_RESONANCES AXIS=Y OUTPUT=raw_data
+
+# then in the console of the machine
+~/klipper/scripts/graph_accelerometer.py /tmp/raw_data_x_*.csv -o /tmp/resonances_x.png -c -a z
+```
+
