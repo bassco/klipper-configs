@@ -62,7 +62,7 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 
 - [x] Extruder
   - [x] direction is good
-  - [ ] calibrate steps
+  - [x] calibrate steps
 - [ ] Fans
   - [x] Part Cooling
   - [x] Hotend Cooling
@@ -79,7 +79,7 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
   - [ ] add led colour statuses to print macros
 - [x] Tap Probe
   - [x] endstop working
-  - [x] tap speed 6mm/s
+  - [x] tap speed 6mm/s - using probe_accuracy_test --speedtest parameter from 3 to 10
 - [ ] homing override
   - [ ] x does not z hop - can hit bed if not qgl
   - [ ] y does not z hop - can hit bed if not qgl
