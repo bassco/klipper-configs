@@ -63,6 +63,7 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 - [x] Extruder
   - [x] direction is good
   - [x] calibrate steps
+  - [x] pid calibrate
 - [ ] Fans
   - [x] Part Cooling
   - [x] Hotend Cooling
@@ -74,7 +75,7 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
   - [x] temp sensor
   - [x] heater
 - [x] Leds
-  - [ ] stealthburner leds showing
+  - [x] stealthburner leds showing
   - [ ] add led colours to menu
   - [ ] add led colour statuses to print macros
 - [x] Tap Probe
