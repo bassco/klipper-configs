@@ -84,7 +84,7 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 - [ ] homing override
   - [ ] x does not z hop - can hit bed if not qgl
   - [ ] y does not z hop - can hit bed if not qgl
-  - [ ] z does not centre toolhead at x150 and y150
+  - [x] z does not centre toolhead at x150 and y150
 
 ### tap probe speed validation
 
