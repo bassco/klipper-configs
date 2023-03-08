@@ -14,7 +14,9 @@
 * Bed Wagos from deepfriedhero.in https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/deepfriedheroin/v2_bed_wagos
 * https://www.thingiverse.com/thing:4817974 or https://www.thingiverse.com/thing:4828117 or https://github.com/Ramalama2/Voron-2-Mods/tree/main/Wagomount_221
 * Ramalama2 [front-idlers](https://github.com/Ramalama2/Voron-2-Mods/tree/main/Front_Idlers)
-* https://github.com/VoronDesign/VoronUsers/tree/master/printer_mods/edwardyeeks/Decontaminator_Purge_Bucket_%26_Nozzle_Scrubber
+  G28 Z
+  G28 Z
+* https://www.printables.com/model/201999-nozzle-scrubber-with-a-little-bucket-for-voron-24
 * https://github.com/nevermore3d/Nevermore_Micro
 * https://github.com/tanaes/whopping_Voron_mods/tree/main/extrusion_backers
 * 3010 fan mod for electronics cover for SB204 on CW2 - to be added
@@ -81,11 +83,16 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 - [x] Tap Probe
   - [x] endstop working
   - [x] tap speed 6mm/s - using probe_accuracy_test --speedtest parameter from 3 to 10
-- [ ] homing override
-  - [ ] x does not z hop - can hit bed if not qgl
-  - [ ] y does not z hop - can hit bed if not qgl
+- [x] homing override
+  - [x] x does not z hop - can hit bed if not qgl
+  - [x] y does not z hop - can hit bed if not qgl
   - [x] z does not centre toolhead at x150 and y150
-
+- [x] bed
+  - [x] removed kinematic mount
+  - [x] added purge bucket and nozzle brush
+  - [x] added clean_nozzle_alt to print_start
+  - [x] added earth wire
+ 
 ### tap probe speed validation
 
 ```console
