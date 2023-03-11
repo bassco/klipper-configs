@@ -92,7 +92,9 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
   - [x] added purge bucket and nozzle brush
   - [x] added clean_nozzle_alt to print_start
   - [x] added earth wire
+- [x] gantry bed corner [measurements](https://klipper.discourse.group/t/qgl-behaviour-on-a-voron350/6516/8)
  
+
 ### tap probe speed validation
 
 ```console
@@ -142,6 +144,18 @@ test
 4:corner 30samples (260, 40)   0.77250  0.790625  0.772500  0.78750  0.783625  0.004828     30  0.018125  0.015000
 --------------------------------------------------------------------------------
 ```
+
+### Gantry Corner Measurements
+
+As per the checklist - measure you z-belt centre to the inside belt from the (0,0) coordinate to enable the QGL algorithm to converge.
+
+Here is the result after change the corner positions to match the physical printer.
+
+```console
+// Retries: 1/3 Probed points range: 0.003125 tolerance: 0.008000
+```
+
+Previously 2 or 3 attmepts were required to reach the required tolerance.
 
 
 ### PID Calibrate
