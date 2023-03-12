@@ -89,8 +89,8 @@ https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
   - [x] z does not centre toolhead at x150 and y150
 - [x] bed
   - [x] removed kinematic mount
-  - [x] added purge bucket and nozzle brush
-  - [x] added clean_nozzle_alt to print_start
+  - [x] installed servo nozzle brush from [tronfu](https://github.com/tronfu/Voron-Mods/blob/main/Servo_Nozzle_Brush)
+  - [x] added clean_nozzle to print_start
   - [x] added earth wire
 - [x] gantry bed corner [measurements](https://klipper.discourse.group/t/qgl-behaviour-on-a-voron350/6516/8)
  
