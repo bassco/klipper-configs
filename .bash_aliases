@@ -2,6 +2,7 @@ export EDITOR=vim VISUAL=vim
 export GPG_TTY=$(tty)
 export LC_ALL="$LANG"
 export LANGUAGE="$LANG"
+alias gco='git checkout'
 alias gs='git status'
 alias gd='git diff'
 alias gdc='git diff --cached'
