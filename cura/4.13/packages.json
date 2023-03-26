@@ -1,0 +1,74 @@
+{
+    "dismissed": [],
+    "installed": {
+        "CustomJobPrefix": {
+            "filename": "C:\\Users\\bashco\\AppData\\Local\\cura\\4.13\\cache\\cura_packages\\CustomJobPrefix.curapackage",
+            "package_info": {
+                "author": {
+                    "author_id": "fieldofview",
+                    "display_name": "fieldOfView",
+                    "email": "aldo@fieldofview.com",
+                    "website": "http://fieldofview.com"
+                },
+                "description": "Lets the user customise the prefix and postfix for print jobs (gcode files) on a per-printer basis. \n\nFormerly known as Custom Printjob Prefix.",
+                "display_name": "Printjob Naming",
+                "is_active": true,
+                "is_bundled": false,
+                "is_installed": true,
+                "package_id": "CustomJobPrefix",
+                "package_type": "plugin",
+                "package_version": "3.7.0",
+                "sdk_version": 7,
+                "sdk_version_semver": "7.0.0",
+                "website": "https://github.com/fieldOfView/Cura-CustomJobPrefix"
+            }
+        },
+        "MeshTools": {
+            "filename": "C:\\Users\\bashco\\AppData\\Local\\cura\\4.13\\cache\\cura_packages\\MeshTools.curapackage",
+            "package_info": {
+                "author": {
+                    "author_id": "fieldofview",
+                    "display_name": "fieldOfView",
+                    "email": "aldo@fieldofview.com",
+                    "website": "http://fieldofview.com"
+                },
+                "description": "Adds several mesh analysis and manipulation tools.\n\nThe development of this plugin can be sponsored via Github Sponsors (https://github.com/sponsors/fieldofview) or Paypal (https://www.paypal.me/fieldofview)",
+                "display_name": "Mesh Tools",
+                "is_active": true,
+                "is_bundled": false,
+                "is_installed": true,
+                "package_id": "MeshTools",
+                "package_type": "plugin",
+                "package_version": "3.7.0",
+                "sdk_version": 7,
+                "sdk_version_semver": "7.0.0",
+                "website": "https://github.com/fieldOfView/Cura-MeshTools"
+            }
+        },
+        "StartOptimiser": {
+            "filename": "C:\\Users\\bashco\\AppData\\Local\\cura\\4.13\\cache\\cura_packages\\StartOptimiser.curapackage",
+            "package_info": {
+                "author": {
+                    "author_id": "fieldofview",
+                    "display_name": "fieldOfView",
+                    "email": "aldo@fieldofview.com",
+                    "website": "http://fieldofview.com"
+                },
+                "description": "Lets the user optimise the Cura startup time by only loading configuration files for printers that are currently configured in Cura.\n\nThe development of this plugin can be sponsored via Github Sponsors (https://github.com/sponsors/fieldofview) or Paypal (https://www.paypal.me/fieldofview)",
+                "display_name": "Startup Optimiser",
+                "is_active": false,
+                "is_bundled": false,
+                "is_installed": true,
+                "package_id": "StartOptimiser",
+                "package_type": "plugin",
+                "package_version": "3.6.0",
+                "sdk_version": 7,
+                "sdk_version_semver": "7.0.0",
+                "website": "https://github.com/fieldOfView/Cura-StartOptimiser"
+            }
+        }
+    },
+    "to_install": {},
+    "to_remove": [],
+    "version": 1
+}
