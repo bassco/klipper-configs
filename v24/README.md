@@ -369,3 +369,63 @@ TEST_RESONANCES AXIS=Y OUTPUT=raw_data
 ~/klipper/scripts/graph_accelerometer.py /tmp/raw_data_x_*.csv -o /tmp/resonances_x.png -c -a z
 ```
 
+
+### input shaper on lak table
+
+```console
+21:42:46 
+// Calculating the best input shaper parameters for x axis
+21:42:49 
+// Fitted shaper 'zv' frequency = 57.6 Hz (vibrations = 9.2%, smoothing ~= 0.053)
+21:42:49 
+// To avoid too much smoothing with 'zv', suggested max_accel <= 12900 mm/sec^2
+21:42:53 
+// Fitted shaper 'mzv' frequency = 55.8 Hz (vibrations = 1.3%, smoothing ~= 0.065)
+21:42:53 
+// To avoid too much smoothing with 'mzv', suggested max_accel <= 9200 mm/sec^2
+21:42:56 
+// Fitted shaper 'ei' frequency = 51.0 Hz (vibrations = 0.2%, smoothing ~= 0.124)
+21:42:56 
+// To avoid too much smoothing with 'ei', suggested max_accel <= 4800 mm/sec^2
+21:43:00 
+// Fitted shaper '2hump_ei' frequency = 81.0 Hz (vibrations = 0.0%, smoothing ~= 0.082)
+21:43:00 
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 7300 mm/sec^2
+21:43:03 
+// Fitted shaper '3hump_ei' frequency = 97.6 Hz (vibrations = 0.0%, smoothing ~= 0.086)
+21:43:03 
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 7000 mm/sec^2
+21:43:03 
+// Recommended shaper_type_x = mzv, shaper_freq_x = 55.8 Hz
+21:43:03 
+// Shaper calibration data written to /tmp/calibration_data_x_20230406_213801.csv file
+21:43:03 
+// Calculating the best input shaper parameters for y axis
+21:43:06 
+// Fitted shaper 'zv' frequency = 43.4 Hz (vibrations = 3.6%, smoothing ~= 0.087)
+21:43:06 
+// To avoid too much smoothing with 'zv', suggested max_accel <= 7300 mm/sec^2
+21:43:10 
+// Fitted shaper 'mzv' frequency = 41.8 Hz (vibrations = 0.0%, smoothing ~= 0.117)
+21:43:10 
+// To avoid too much smoothing with 'mzv', suggested max_accel <= 5100 mm/sec^2
+21:43:14 
+// Fitted shaper 'ei' frequency = 50.0 Hz (vibrations = 0.0%, smoothing ~= 0.129)
+21:43:14 
+// To avoid too much smoothing with 'ei', suggested max_accel <= 4700 mm/sec^2
+21:43:17 
+// Fitted shaper '2hump_ei' frequency = 62.2 Hz (vibrations = 0.0%, smoothing ~= 0.139)
+21:43:17 
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 4300 mm/sec^2
+21:43:21 
+// Fitted shaper '3hump_ei' frequency = 75.0 Hz (vibrations = 0.0%, smoothing ~= 0.146)
+21:43:21 
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 4100 mm/sec^2
+21:43:21 
+// Recommended shaper_type_y = mzv, shaper_freq_y = 41.8 Hz
+21:43:21 
+// Shaper calibration data written to /tmp/calibration_data_y_20230406_213801.csv file
+21:43:21 
+// The SAVE_CONFIG command will update the printer config file
+```
+
