@@ -20,6 +20,7 @@
 * https://github.com/nevermore3d/Nevermore_Micro
 * https://github.com/tanaes/whopping_Voron_mods/tree/main/extrusion_backers
 * 3010 fan mod for electronics cover for SB204 on CW2 - to be added
+* Added a (TP-LINK T3U)[https://www.amazon.de/dp/B0859M539M] usb wifi adapter and disabled the on-board wifi
 
 Interesting research projects
 
@@ -429,3 +430,21 @@ TEST_RESONANCES AXIS=Y OUTPUT=raw_data
 // The SAVE_CONFIG command will update the printer config file
 ```
 
+
+### disable on-board wifi
+
+Takes about 5 minutes to compile the module....
+
+```console
+sudo su - root
+apt-get install dkms raspberrypi-kernel-headers
+git clone "https://github.com/RinCat/RTL88x2BU-Linux-Driver.git" /usr/src/rtl88x2bu-git
+sed -i 's/PACKAGE_VERSION="@PKGVER@"/PACKAGE_VERSION="git"/g' /usr/src/rtl88x2bu-git/dkms.conf
+dkms add -m rtl88x2bu -v git
+dkms autoinstall
+
+modprobe 88x2bu 
+echo -e  "blacklist brcmfmac\nblacklist brcmutil\n" > /etc/modprobe.d/raspi-blacklist.conf
+# check the new IP address on the router to connect after reboot
+reboot
+```
