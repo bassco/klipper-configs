@@ -50,6 +50,8 @@ Jumpers for sensorless homing installed on the X and Y drivers. -  trigger posit
 https://www.klipper3d.org/CANBUS.html
 https://github.com/cruiten/Voron-Related/blob/main/CANbus/Documentation
 
+Added [Klippercreen][ks]
+
 ## Commissioning
 
 * Hotend thermistor wires don't like staying in their crimps on the toolhead board. Maybe the SB board with the Molex connector will be better?
@@ -448,3 +450,19 @@ echo -e  "blacklist brcmfmac\nblacklist brcmutil\n" > /etc/modprobe.d/raspi-blac
 # check the new IP address on the router to connect after reboot
 reboot
 ```
+
+### klipperscreen network error
+
+When installing [KlipperScreen][ks], the default networking is changed to NetworkManager and it knocked out my wifi and I was unable to connect to the pi.
+
+Fortunately, a LAN cable saved the day and after a reboot, the IP address was displayed on the screen.
+
+I used (this article)[https://wiki.ubuntuusers.de/NetworkManager/NetworkManager_ohne_GUI/] with `nmcli` to list the wifi devices and configure the wifi adapter.
+
+I also had to re-run the KlipperScreen install script, as the initial installation killed the network part way through.
+
+On the second script install, KlipperScreen installed successfully.
+
+## references
+
+[ks]:(https://github.com/KlipperScreen/KlipperScreen)
