@@ -5,10 +5,15 @@ klipper 3d printer configs for the machines that I run
 - [Ender3](ender3/README.md)
 - [Kossel](kossel/LPC.md)
 - [Switchwire](switchwire/README.md)
+- [Voron v0.1](v0/README.md)
 - [Voron v2.4](v24/README.md)
 
+[Howto interpret IS graphs](https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879)
+
 ## Start GCODE
- ### ideaMaker template
+
+### ideaMaker template
+
 ```code
 G21        ;metric values
 G90        ;absolute positioning
@@ -52,6 +57,5 @@ M84      ;steppers off
 ```
 
 ## Filament
-
 
 ![Drying times](images/drying_times.png)
