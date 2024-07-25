@@ -1,5 +1,10 @@
 # Voron 2.4 300mm build
 
+Changed firmware from Klipper to DangerKlipper
+ 
+- [DangerKlipper](https://github.com/DangerKlippers/danger-klipper/)
+- [docs](https://dangerklipper.io/)
+
 [Board](https://github.com/FYSETC/FYSETC-SPIDER)
 
 * Carbon filter: Nevermore - yes - configure needs to be done and also needs reprinting as the cover has warped and is no longer air tight.
