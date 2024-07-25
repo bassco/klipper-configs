@@ -21,6 +21,7 @@
 * https://github.com/tanaes/whopping_Voron_mods/tree/main/extrusion_backers
 * 3010 fan mod for electronics cover for SB204 on CW2 - to be added
 * Added a (TP-LINK T3U)[https://www.amazon.de/dp/B0859M539M] usb wifi adapter and disabled the on-board wifi
+* Added shaketune [macros][shaketune] from Frix-x
 
 Interesting research projects
 
@@ -147,6 +148,8 @@ test
 4:corner 30samples (260, 40)   0.77250  0.790625  0.772500  0.78750  0.783625  0.004828     30  0.018125  0.015000
 --------------------------------------------------------------------------------
 ```
+
+
 
 ### Gantry Corner Measurements
 
@@ -463,6 +466,203 @@ I also had to re-run the KlipperScreen install script, as the initial installati
 
 On the second script install, KlipperScreen installed successfully.
 
+###
+
+Install shaketune
+
+```console
+wget -O - https://raw.githubusercontent.com/Frix-x/klippain-shaketune/main/install.sh | bash
+```
+
+Take measurements - always reset magents whn emoving TAP or you get a 125MHz frequency spike :( 
+
+After setting IS values  - test a voron cube with these settings to verify print quality.
+
+voron cube: 3 perimeters, 0 infill, 0 top, 3-4 bottoms
+
+### autotune
+
+Install the tmc-autotune
+
+```console
+ wget -O - https://raw.githubusercontent.com/andrewmcgr/klipper_tmc_autotune/main/install.sh | bash
+```
+
+The autotune.cfg is set and the results are..
+
+```
+[autotune_tmc stepper_x]
+[autotune_tmc stepper_y]
+[autotune_tmc stepper_z]
+[autotune_tmc stepper_z1]
+[autotune_tmc stepper_z2]
+[autotune_tmc stepper_z3]
+[autotune_tmc extruder]
+autotune_tmc set stepper_x hstrt=7
+autotune_tmc set stepper_x hend=4
+autotune_tmc set stepper_x pwm_freq=2
+autotune_tmc set stepper_x sgthrs=147
+autotune_tmc using max PWM speed 502.929620
+autotune_tmc set stepper_x pwm_autoscale=True
+autotune_tmc set stepper_x pwm_autograd=True
+autotune_tmc set stepper_x pwm_grad=5
+autotune_tmc set stepper_x pwm_ofs=18
+autotune_tmc set stepper_x pwm_reg=15
+autotune_tmc set stepper_x pwm_lim=4
+autotune_tmc set stepper_x tpwmthrs=1048575
+autotune_tmc set stepper_x en_spreadcycle=True
+autotune_tmc set stepper_x tbl=1
+autotune_tmc set stepper_x toff=3
+autotune_tmc set stepper_x tcoolthrs=146(32.0)
+autotune_tmc set stepper_x semin=8
+autotune_tmc set stepper_x semax=4
+autotune_tmc set stepper_x seup=3
+autotune_tmc set stepper_x sedn=0
+autotune_tmc set stepper_x seimin=0
+autotune_tmc set stepper_x iholddelay=12
+autotune_tmc set stepper_x multistep_filt=True
+autotune_tmc set stepper_y hstrt=7
+autotune_tmc set stepper_y hend=4
+autotune_tmc set stepper_y pwm_freq=2
+autotune_tmc set stepper_y sgthrs=158
+autotune_tmc using max PWM speed 502.929620
+autotune_tmc set stepper_y pwm_autoscale=True
+autotune_tmc set stepper_y pwm_autograd=True
+autotune_tmc set stepper_y pwm_grad=5
+autotune_tmc set stepper_y pwm_ofs=18
+autotune_tmc set stepper_y pwm_reg=15
+autotune_tmc set stepper_y pwm_lim=4
+autotune_tmc set stepper_y tpwmthrs=1048575
+autotune_tmc set stepper_y en_spreadcycle=True
+autotune_tmc set stepper_y tbl=1
+autotune_tmc set stepper_y toff=3
+autotune_tmc set stepper_y tcoolthrs=146(32.0)
+autotune_tmc set stepper_y semin=8
+autotune_tmc set stepper_y semax=4
+autotune_tmc set stepper_y seup=3
+autotune_tmc set stepper_y sedn=0
+autotune_tmc set stepper_y seimin=0
+autotune_tmc set stepper_y iholddelay=12
+autotune_tmc set stepper_y multistep_filt=True
+autotune_tmc set stepper_z hstrt=3
+autotune_tmc set stepper_z hend=3
+autotune_tmc set stepper_z pwm_freq=2
+autotune_tmc set stepper_z sgthrs=10
+autotune_tmc using max PWM speed 213.722352
+autotune_tmc set stepper_z pwm_autoscale=True
+autotune_tmc set stepper_z pwm_autograd=True
+autotune_tmc set stepper_z pwm_grad=14
+autotune_tmc set stepper_z pwm_ofs=20
+autotune_tmc set stepper_z pwm_reg=15
+autotune_tmc set stepper_z pwm_lim=4
+autotune_tmc set stepper_z tpwmthrs=0
+autotune_tmc set stepper_z en_spreadcycle=False
+autotune_tmc set stepper_z tbl=1
+autotune_tmc set stepper_z toff=3
+autotune_tmc set stepper_z tcoolthrs=59(32.0)
+autotune_tmc set stepper_z semin=8
+autotune_tmc set stepper_z semax=4
+autotune_tmc set stepper_z seup=3
+autotune_tmc set stepper_z sedn=0
+autotune_tmc set stepper_z seimin=0
+autotune_tmc set stepper_z iholddelay=12
+autotune_tmc set stepper_z multistep_filt=True
+autotune_tmc set stepper_z1 hstrt=3
+autotune_tmc set stepper_z1 hend=3
+autotune_tmc set stepper_z1 pwm_freq=2
+autotune_tmc set stepper_z1 sgthrs=10
+autotune_tmc using max PWM speed 213.722352
+autotune_tmc set stepper_z1 pwm_autoscale=True
+autotune_tmc set stepper_z1 pwm_autograd=True
+autotune_tmc set stepper_z1 pwm_grad=14
+autotune_tmc set stepper_z1 pwm_ofs=20
+autotune_tmc set stepper_z1 pwm_reg=15
+autotune_tmc set stepper_z1 pwm_lim=4
+autotune_tmc set stepper_z1 tpwmthrs=0
+autotune_tmc set stepper_z1 en_spreadcycle=False
+autotune_tmc set stepper_z1 tbl=1
+autotune_tmc set stepper_z1 toff=3
+autotune_tmc set stepper_z1 tcoolthrs=59(32.0)
+autotune_tmc set stepper_z1 semin=8
+autotune_tmc set stepper_z1 semax=4
+autotune_tmc set stepper_z1 seup=3
+autotune_tmc set stepper_z1 sedn=0
+autotune_tmc set stepper_z1 seimin=0
+autotune_tmc set stepper_z1 iholddelay=12
+autotune_tmc set stepper_z1 multistep_filt=True
+autotune_tmc set stepper_z2 hstrt=3
+autotune_tmc set stepper_z2 hend=3
+autotune_tmc set stepper_z2 pwm_freq=2
+autotune_tmc set stepper_z2 sgthrs=10
+autotune_tmc using max PWM speed 213.722352
+autotune_tmc set stepper_z2 pwm_autoscale=True
+autotune_tmc set stepper_z2 pwm_autograd=True
+autotune_tmc set stepper_z2 pwm_grad=14
+autotune_tmc set stepper_z2 pwm_ofs=20
+autotune_tmc set stepper_z2 pwm_reg=15
+autotune_tmc set stepper_z2 pwm_lim=4
+autotune_tmc set stepper_z2 tpwmthrs=0
+autotune_tmc set stepper_z2 en_spreadcycle=False
+autotune_tmc set stepper_z2 tbl=1
+autotune_tmc set stepper_z2 toff=3
+autotune_tmc set stepper_z2 tcoolthrs=59(32.0)
+autotune_tmc set stepper_z2 semin=8
+autotune_tmc set stepper_z2 semax=4
+autotune_tmc set stepper_z2 seup=3
+autotune_tmc set stepper_z2 sedn=0
+autotune_tmc set stepper_z2 seimin=0
+autotune_tmc set stepper_z2 iholddelay=12
+autotune_tmc set stepper_z2 multistep_filt=True
+autotune_tmc set stepper_z3 hstrt=3
+autotune_tmc set stepper_z3 hend=3
+autotune_tmc set stepper_z3 pwm_freq=2
+autotune_tmc set stepper_z3 sgthrs=10
+autotune_tmc using max PWM speed 213.722352
+autotune_tmc set stepper_z3 pwm_autoscale=True
+autotune_tmc set stepper_z3 pwm_autograd=True
+autotune_tmc set stepper_z3 pwm_grad=14
+autotune_tmc set stepper_z3 pwm_ofs=20
+autotune_tmc set stepper_z3 pwm_reg=15
+autotune_tmc set stepper_z3 pwm_lim=4
+autotune_tmc set stepper_z3 tpwmthrs=0
+autotune_tmc set stepper_z3 en_spreadcycle=False
+autotune_tmc set stepper_z3 tbl=1
+autotune_tmc set stepper_z3 toff=3
+autotune_tmc set stepper_z3 tcoolthrs=59(32.0)
+autotune_tmc set stepper_z3 semin=8
+autotune_tmc set stepper_z3 semax=4
+autotune_tmc set stepper_z3 seup=3
+autotune_tmc set stepper_z3 sedn=0
+autotune_tmc set stepper_z3 seimin=0
+autotune_tmc set stepper_z3 iholddelay=12
+autotune_tmc set stepper_z3 multistep_filt=True
+autotune_tmc set extruder hstrt=7
+autotune_tmc set extruder hend=9
+autotune_tmc set extruder pwm_freq=2
+autotune_tmc set extruder sgthrs=10
+autotune_tmc using max PWM speed 351.724019
+autotune_tmc set extruder pwm_autoscale=True
+autotune_tmc set extruder pwm_autograd=True
+autotune_tmc set extruder pwm_grad=5
+autotune_tmc set extruder pwm_ofs=11
+autotune_tmc set extruder pwm_reg=15
+autotune_tmc set extruder pwm_lim=4
+autotune_tmc set extruder tpwmthrs=1048575
+autotune_tmc set extruder en_spreadcycle=True
+autotune_tmc set extruder tbl=1
+autotune_tmc set extruder toff=3
+autotune_tmc set extruder tcoolthrs=59(18.114321192000002)
+autotune_tmc set extruder semin=8
+autotune_tmc set extruder semax=4
+autotune_tmc set extruder seup=3
+autotune_tmc set extruder sedn=0
+autotune_tmc set extruder seimin=0
+autotune_tmc set extruder iholddelay=12
+autotune_tmc set extruder multistep_filt=True
+```
+
 ## references
 
 [ks]:(https://github.com/KlipperScreen/KlipperScreen)
+[is_theory]:(https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879)
+[shaketune]:(https://github.com/Frix-x/klippain-shaketune)
