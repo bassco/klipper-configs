@@ -473,7 +473,7 @@ On the second script install, KlipperScreen installed successfully.
 
 ###
 
-Install shaketune
+Install [shaketune]
 
 ```console
 wget -O - https://raw.githubusercontent.com/Frix-x/klippain-shaketune/main/install.sh | bash
@@ -666,8 +666,24 @@ autotune_tmc set extruder iholddelay=12
 autotune_tmc set extruder multistep_filt=True
 ```
 
+## provok3d nozzle adxl acceleromoter
+
+See firmware upgrade [docs](https://provok3d.com/wp-content/uploads/2024/02/update-nozzle-adxl-1.3.pdf?v=0a10a0b3e53b)
+
+```console
+# jumper the module for dfu mode
+lsusb
+cd ~
+git clone https://github.com/mattthebaker/ampon_anchor.git
+cd ampon_anchor && git checkout ampon_f042 && cd
+./ampon_anchor/update.sh
+# remove usb cable
+# remove jumper
+# configure the nozzle-adxl.cfg include
+```
+
 ## references
 
-[ks]:(https://github.com/KlipperScreen/KlipperScreen)
-[is_theory]:(https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879)
-[shaketune]:(https://github.com/Frix-x/klippain-shaketune)
+[ks]: <https://github.com/KlipperScreen/KlipperScreen> "KlipperScreen"
+[is_theory]: <https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879> "Input Shaper Theory"
+[shaketune]: <https://github.com/Frix-x/klippain-shaketune> "Klippain Shaketune Repo"

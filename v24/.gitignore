@@ -1,2 +1,5 @@
-printer-20*.cfg
 *.conf.bkp
+K-ShakeTune_results/
+printer-20*.cfg
+results/
+ShakeTune_results/
