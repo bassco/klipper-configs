@@ -152,3 +152,23 @@ Recommended shaper is mzv @ 34.8 Hz
 ```
 
 Input shaper Y result ![](shaper_y.png)
+
+### klipper expander
+
+https://github.com/VoronDesign/Voron-Hardware/blob/master/Klipper_Expander/Documentation/Setup_and_Flashing_Guide.md
+
+Add the boot jumper. Reset the board. Confirm that the board is in dfu-util mode
+
+```console
+dfu-util --list
+sudo systemctl stop klipper
+cd ~/klipper
+make clean
+cp ~/dev/klipper-configs/.config-expander ~/klipper/.config
+make -j4
+make flash FLASH_DEVICE=0483:df11
+# remove boot jumper
+# reset the board
+sudo systemctl start klipper
+```
+
