@@ -65,7 +65,7 @@ Why? `CONFIG_FLASH_START` address changed due to de-selecting `CONFIG_SMOOTHIEWA
 ```
 
 * Formatted the SD-CARD to FAT32 for good measure.
-* Need to reset the board button twice for the new FIRMWARE.BIN to be written to flash. 
+* Need to reset the board button twice for the new FIRMWARE.BIN to be written to flash.
 
 ### Probe issue
 
@@ -74,9 +74,9 @@ Probe speed - set to 5 gives more consistent results than a speed of 10.
 
 ## Improvements
 
-### todo 
+### todo
 
-Install the gcode shell command extra [code](https://raw.githubusercontent.com/th33xitus/kiauh/master/resources/gcode_shell_command.py) and create a [script](https://raw.githubusercontent.com/th33xitus/kiauh/master/resources/autocommit.sh) to auto-commit changes. 
+Install the gcode shell command extra [code](https://raw.githubusercontent.com/th33xitus/kiauh/master/resources/gcode_shell_command.py) and create a [script](https://raw.githubusercontent.com/th33xitus/kiauh/master/resources/autocommit.sh) to auto-commit changes.
 
 ```
 
@@ -102,7 +102,7 @@ ln -sf dev/klipper-configs/switchwire klipper_config
 * PID_CALIBRATE HEATER=heater_bed TARGET=60
 * SAVE_CONFIG
 
-### Probe 
+### Probe
 
 * PROBE_ACCURACY
 * PROBE_CALIBRATE
@@ -171,4 +171,86 @@ make flash FLASH_DEVICE=0483:df11
 # reset the board
 sudo systemctl start klipper
 ```
+
+### mellow fly usb adxl bed with rp2040
+
+Press the boot button and then power it up via the usb cable
+
+```console
+sudo systemctl stop klipper
+cd ~/klipper
+make clean
+cp ~/dev/klipper-configs/.config-bed ~/klipper/.config
+make -j4
+make flash FLASH_DEVICE=2e8a:0003 # reboots the chip
+
+sudo systemctl stop klipper
+```
+
+### klippain shaketune
+
+```text
+CREATE_VIBRATIONS_PROFILE
+....
+19:38:54 // Machine estimated vibration symmetry: 39.0%
+19:38:54 // Vibrations peaks detected: 3 @ 87.3, 129.9, 165.3 mm/s (avoid setting a speed near these values in your slicer print profile)
+19:38:54 // Lowest vibrations speeds (3 ranges sorted from best to worse):
+19:38:54 // 1: 2.0 to 80.0 mm/s
+19:38:54 // 2: 145.8 to 155.4 mm/s
+19:38:54 // 3: 196.0 to 200.0 mm/s
+19:38:54 // Lowest vibrations angles (2 ranges sorted from best to worse):
+19:38:54 // 1: 65.6° to 114.7° (mean vibrations energy: 19.81% of max)
+19:38:54 // 2: 245.8° to 294.9° (mean vibrations energy: 19.81% of max)
+19:38:57 // Motors have a main resonant frequency at 210.4Hz with an estimated damping ratio of 0.069
+19:39:35 // vibrations profile graphs created successfully!
+
+AXES_SHAPER_CALIBRATION
+....
+// Shake&Tune version: v4.1.0-1-g66f5e32
+19:42:13 // X axis frequency profile generation...
+19:42:13 // This may take some time (1-3min)
+19:42:18 // Fitted shaper 'zv' frequency = 57.6 Hz (vibrations = 6.2%, smoothing ~= 0.062)
+19:42:18 // To avoid too much smoothing with 'zv', suggested max_accel <= 12700 mm/sec^2
+19:42:21 // Fitted shaper 'mzv' frequency = 54.8 Hz (vibrations = 0.5%, smoothing ~= 0.075)
+19:42:21 // To avoid too much smoothing with 'mzv', suggested max_accel <= 8800 mm/sec^2
+19:42:24 // Fitted shaper 'ei' frequency = 64.6 Hz (vibrations = 0.0%, smoothing ~= 0.082)
+19:42:24 // To avoid too much smoothing with 'ei', suggested max_accel <= 7800 mm/sec^2
+19:42:27 // Fitted shaper '2hump_ei' frequency = 81.0 Hz (vibrations = 0.0%, smoothing ~= 0.091)
+19:42:27 // To avoid too much smoothing with '2hump_ei', suggested max_accel <= 7300 mm/sec^2
+19:42:30 // Fitted shaper '3hump_ei' frequency = 98.4 Hz (vibrations = 0.0%, smoothing ~= 0.093)
+19:42:30 // To avoid too much smoothing with '3hump_ei', suggested max_accel <= 7000 mm/sec^2
+19:42:30 // -> Recommended shaper is MZV @ 54.8 Hz (when using a square corner velocity of 8.0 and a damping ratio of 0.098)
+19:42:31 // Peaks detected on the graph: 1 @ 56.9 Hz (1 above effect threshold)
+
+
+
+// Y axis frequency profile generation...
+19:44:54
+// This may take some time (1-3min)
+19:44:58
+// Fitted shaper 'zv' frequency = 41.0 Hz (vibrations = 5.9%, smoothing ~= 0.105)
+19:44:58
+// To avoid too much smoothing with 'zv', suggested max_accel <= 6100 mm/sec^2
+19:45:02
+// Fitted shaper 'mzv' frequency = 40.0 Hz (vibrations = 1.0%, smoothing ~= 0.128)
+19:45:02
+// To avoid too much smoothing with 'mzv', suggested max_accel <= 4700 mm/sec^2
+19:45:05
+// Fitted shaper 'ei' frequency = 48.2 Hz (vibrations = 0.0%, smoothing ~= 0.141)
+19:45:05
+// To avoid too much smoothing with 'ei', suggested max_accel <= 4300 mm/sec^2
+19:45:08
+// Fitted shaper '2hump_ei' frequency = 62.6 Hz (vibrations = 0.0%, smoothing ~= 0.141)
+19:45:08
+// To avoid too much smoothing with '2hump_ei', suggested max_accel <= 4000 mm/sec^2
+19:45:11
+// Fitted shaper '3hump_ei' frequency = 77.8 Hz (vibrations = 0.0%, smoothing ~= 0.140)
+19:45:11
+// To avoid too much smoothing with '3hump_ei', suggested max_accel <= 4100 mm/sec^2
+19:45:11
+// -> Recommended shaper is MZV @ 40.0 Hz (when using a square corner velocity of 8.0 and a damping ratio of 0.049)
+19:45:12
+// Peaks detected on the graph: 1 @ 39.6 Hz (1 above effect threshold)
+19:45:17
+// input shaper graphs created successfully!
 
