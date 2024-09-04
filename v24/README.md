@@ -27,6 +27,7 @@ Changed firmware from Klipper to DangerKlipper
 * 3010 fan mod for electronics cover for SB204 on CW2 - to be added
 * Added a (TP-LINK T3U)[https://www.amazon.de/dp/B0859M539M] usb wifi adapter and disabled the on-board wifi
 * Added shaketune [macros][shaketune] from Frix-x
+* Added nozzle [wiper](https://github.com/scheffield/nozzle-cleaner)
 
 Interesting research projects
 
