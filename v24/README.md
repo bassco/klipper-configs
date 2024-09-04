@@ -485,6 +485,26 @@ After setting IS values  - test a voron cube with these settings to verify print
 
 voron cube: 3 perimeters, 0 infill, 0 top, 3-4 bottoms
 
+```console
+CREATE_VIBRATIONS_PROFILE
+
+/ Machine estimated vibration symmetry: 99.9%
+00:01:24 // Vibrations peaks detected: 5 @ 42.3, 52.6, 80.3, 83.6, 105.8 mm/s (avoid setting a speed near these values in your slicer print profile)
+00:01:24 // Lowest vibrations speeds (4 ranges sorted from best to worse):
+00:01:24 // 1: 2.0 to 37.4 mm/s
+00:01:24 // 2: 57.5 to 73.4 mm/s
+00:01:24 // 3: 89.3 to 103.8 mm/s
+00:01:24 // 4: 107.8 to 200.0 mm/s
+00:01:24 // Lowest vibrations angles (4 ranges sorted from best to worse):
+00:01:24 // 1: 125.2° to 145.2° (mean vibrations energy: 48.35% of max)
+00:01:24 // 2: 304.9° to 325.5° (mean vibrations energy: 49.13% of max)
+00:01:24 // 3: 215.3° to 235.3° (mean vibrations energy: 57.04% of max)
+00:01:24 // 4: 35.0° to 55.1° (mean vibrations energy: 57.04% of max)
+00:01:27 // Motors have a main resonant frequency at 269.1Hz with an estimated damping ratio of 0.043
+00:02:06 // vibrations profile graphs created successfully!
+00:02:06 // Cleaned up the output folder (only the last 5 results were kept)!
+```
+
 ### autotune
 
 Install the tmc-autotune
@@ -681,6 +701,14 @@ cd ampon_anchor && git checkout ampon_f042 && cd
 # remove jumper
 # configure the nozzle-adxl.cfg include
 ```
+
+## add bed fan macro
+
+Added the wiring from 2 central fans using WAGOs from the E0 port of the board.
+
+[Bed fan Macro](https://github.com/3DPrintDemon/Demon-Smart-Bed-Fans-Monitor-System-For-Voron-2.4-Chamber-Circulation/blob/main/demon_bed_fans_monitor_v1.1.cfg)
+
+Very effective, but does add quite a bit of load onto the bed to keep the heater going. Machine would need some thermal insulation to improve this.
 
 ## references
 
