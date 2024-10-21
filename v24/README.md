@@ -711,6 +711,55 @@ Added the wiring from 2 central fans using WAGOs from the E0 port of the board.
 
 Very effective, but does add quite a bit of load onto the bed to keep the heater going. Machine would need some thermal insulation to improve this.
 
+## added beacon probe 
+
+
+
+```text
+BEACON_QUERY
+G0 X150 Y150 Z20 F7200
+
+PROBE_ACCURACY
+23:49:38 
+// probe at 150.000,150.000,2.000 is z=2.617635
+23:49:38 
+// probe at 150.000,150.000,2.000 is z=2.617635
+23:49:38 
+// probe at 150.000,150.000,2.000 is z=2.616955
+23:49:38 
+// probe at 150.000,150.000,2.000 is z=2.616955
+23:49:38 
+// probe at 150.000,150.000,2.000 is z=2.616610
+23:49:38 
+// probe at 150.000,150.000,2.000 is z=2.616610
+23:49:39 
+// probe at 150.000,150.000,2.000 is z=2.616302
+23:49:39 
+// probe at 150.000,150.000,2.000 is z=2.616302
+23:49:39 
+// probe at 150.000,150.000,2.000 is z=2.616290
+23:49:39 
+// probe at 150.000,150.000,2.000 is z=2.616290
+23:49:39 
+// probe at 150.000,150.000,2.000 is z=2.616048
+23:49:39 
+// probe at 150.000,150.000,2.000 is z=2.616048
+23:49:40 
+// probe at 150.000,150.000,2.000 is z=2.615655
+23:49:40 
+// probe at 150.000,150.000,2.000 is z=2.615653
+23:49:40 
+// probe accuracy results: maximum 1.384347, minimum 1.375330, range 0.009018, average 1.382518, median 1.383544, standard deviation 0.000154
+23:50:43 
+$ BEACON_ESTIMATE_BACKLASH
+23:50:45 
+// probe at 150.000,150.000,1.347 is z=1.965952
+23:50:45 
+// Target kinematic Z is 1.382
+23:51:01 
+// Median distance moving up 1.97075, down 1.98018, delta 0.00943 over 20 samples
+```
+
 ## references
 
 [ks]: <https://github.com/KlipperScreen/KlipperScreen> "KlipperScreen"
