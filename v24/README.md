@@ -760,8 +760,82 @@ $ BEACON_ESTIMATE_BACKLASH
 // Median distance moving up 1.97075, down 1.98018, delta 0.00943 over 20 samples
 ```
 
+## xol2 toolhead
+
+[EBB CAN V1.2](https://github.com/bigtreetech/EBB/blob/master/EBB%20CAN%20V1.1%20and%20V1.2%20%28STM32G0B1%29/EBB36%20CAN%20V1.1%20and%20V1.2/Hardware/EBB36%20CAN%20V1.1%26V1.2-PIN.png)
+[Beacon probe](https://docs.beacon3d.com/contact/)
+
+
+[x] hotend fan
+[x] part fan
+[x] leds
+[x] x-endstop
+[ ] extruder direction and rotation distance calibration
+[ ]
+[x] beacon initial config and z calibration
+[x] pid calibration
+[ ] shake&tune using beacon accel
+[ ] xy belts
+[ ] vibrations, homing and slicer speed ranges
+[ ] pid values into print_start macro
+
+
+### extruder pid calibration
+
+```text
+PID_CALIBRATE HEATER=extruder TARGET=195.0
+PID parameters for 195.00°C: pid_Kp=25.710 pid_Ki=1.911 pid_Kd=86.453
+PID_PROFILE SAVE=195 HEATER=extruder
+PID_CALIBRATE HEATER=extruder TARGET=210.0
+PID parameters for 210.00°C: pid_Kp=26.604 pid_Ki=2.023 pid_Kd=87.462
+PID_PROFILE SAVE=210 HEATER=extruder
+PID_CALIBRATE HEATER=extruder TARGET=225.0
+PID parameters for 225.00°C: pid_Kp=27.321 pid_Ki=2.118 pid_Kd=88.112
+PID_PROFILE SAVE=225 HEATER=extruder
+PID_CALIBRATE HEATER=extruder TARGET=240.0
+PID parameters for 240.00°C: pid_Kp=27.209 pid_Ki=2.085 pid_Kd=88.771
+PID_PROFILE SAVE=240 HEATER=extruder
+PID_CALIBRATE HEATER=extruder TARGET=255.0
+PID parameters for 255.00°C: pid_Kp=27.039 pid_Ki=2.068 pid_Kd=88.385
+PID_PROFILE SAVE=255 HEATER=extruder
+PID_CALIBRATE HEATER=extruder TARGET=270.0
+PID parameters for 270.00°C: pid_Kp=27.478 pid_Ki=2.043 pid_Kd=92.395
+PID_PROFILE SAVE=270 HEATER=extruder
+```
+### new heater due to glue smell
+
+Link to heater bed:
+UHU Entferntner
+Sonax Klebstoff Entfertner
+
+NTC 3950 100K Thermistor
+
+```text
+PID_CALIBRATE HEATER=heater_bed TARGET=55.0
+PID parameters for 55.00°C: pid_Kp=15.876 pid_Ki=0.206 pid_Kd=305.815
+PID_PROFILE SAVE=55 HEATER=heater_bed
+PID_CALIBRATE HEATER=heater_bed TARGET=80.0
+PID parameters for 80.00°C: pid_Kp=25.047 pid_Ki=0.491 pid_Kd=319.198
+PID_PROFILE SAVE=80 HEATER=heater_bed
+PID_CALIBRATE HEATER=heater_bed TARGET=100.0
+PID parameters for 100.00°C: pid_Kp=41.787 pid_Ki=1.235 pid_Kd=353.363
+PID_PROFILE SAVE=100 HEATER=heater_bed
+```
+
+### dialing in the wristwatch2 rotation_distance
+
+No need to RESTART - change the value via gcode command and test again
+
+[Use a calculator](https://www.service-uplink.de/esteps_cal/calculator.php)
+
+
+```text
+SET_EXTRUDER_ROTATION_DISTANCE EXTRUDER=extruder DISTANCE=47.318708
+```
+
 ## references
 
 [ks]: <https://github.com/KlipperScreen/KlipperScreen> "KlipperScreen"
 [is_theory]: <https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879> "Input Shaper Theory"
 [shaketune]: <https://github.com/Frix-x/klippain-shaketune> "Klippain Shaketune Repo"
+
