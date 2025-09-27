@@ -15,3 +15,5 @@ function printer(){
 }
 . ~/.bash_aliases_extras 2>/dev/null
 alias temp="/usr/bin/vcgencmd measure_temp"
+alias l='ls -la ${@}'
+alias ll='ls -la ${@}'

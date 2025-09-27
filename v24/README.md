@@ -839,3 +839,7 @@ SET_EXTRUDER_ROTATION_DISTANCE EXTRUDER=extruder DISTANCE=47.318708
 [is_theory]: <https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879> "Input Shaper Theory"
 [shaketune]: <https://github.com/Frix-x/klippain-shaketune> "Klippain Shaketune Repo"
 
+## updates
+
+- Updating main ef9b5391..91fd6480
+- bleeding-edge-v2 ab9fa12b...9eac41f9
