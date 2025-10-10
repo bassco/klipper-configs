@@ -16,28 +16,28 @@ fi
 
 pushd ~/klipper >/dev/null
   echo "Updating klipper"
-  git pull origin master --rebase
+  git pull origin $GIT_REF --rebase
 
   if [ -c "$SERIAL" ]; then
     echo "Building $BOARD mcu"
-    make clean KCONFIG_CONFIG=~/klipper_config/config.$BOARD
-    # make menuconfig KCONFIG_CONFIG=config.$BOARD
-    make KCONFIG_CONFIG=~/klipper_config/config.$BOARD
+    make clean KCONFIG_CONFIG=~/config/config.$BOARD
+    # make menuconfig KCONFIG_CONFIG=~/config/config.$BOARD
+    make KCONFIG_CONFIG=~/config/config.$BOARD
     if [ "$USE_USB" == "yes" ]; then
       ./scripts/flash-sdcard.sh "$SERIAL" "$BOARD" || { echo "Manually copy and flash!"; true; }
     else
       echo "rpi is directly connected over URAT - please flash manually"
     fi
-    /bin/cp -fv out/klipper.bin ~/klipper_config/FIRMWARE.BIN
+    /bin/cp -fv out/klipper.bin ~/config/FIRMWARE.BIN
   else
     echo "Could not find SERIAL:${SERIAL} - skipping"
   fi
   if [ "$USE_RPI" == "yes" ]; then
     echo "Building rpi mcu"
-    make clean KCONFIG_CONFIG=~/klipper_config/config.rpi
-    # make menuconfig KCONFIG_CONFIG=config.rpi
-    make flash KCONFIG_CONFIG=~/klipper_config/config.rpi
-    cp out/klipper.elf ~/klipper_config/klipper.rpi
+    make clean KCONFIG_CONFIG=~/config/config.rpi
+    # make menuconfig KCONFIG_CONFIG=~/config/config.rpi
+    make flash KCONFIG_CONFIG=~/config/config.rpi
+    cp out/klipper.elf ~/config/klipper.rpi
     sudo systemctl start klipper_mcu || true
   fi
   sudo systemctl start klipper

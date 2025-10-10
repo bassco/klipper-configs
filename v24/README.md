@@ -828,18 +828,104 @@ No need to RESTART - change the value via gcode command and test again
 
 [Use a calculator](https://www.service-uplink.de/esteps_cal/calculator.php)
 
-
 ```text
 SET_EXTRUDER_ROTATION_DISTANCE EXTRUDER=extruder DISTANCE=47.318708
 ```
 
+### ebb36
+
+See the flashing [docs](https://github.com/Esoterical/voron_canbus/tree/main/toolhead_flashing/common_hardware/BigTreeTech%20EBB36%20V1.2).
+
+Connect your device to your Pi via USB. Jumper lower right of USB next to moutning bolt. Ensure 24V is not on or connected.
+
+![V1.1 visual]( https://bttwiki.com/img/EBB36CAN/G0B1/EBB_G0B1_RGB.png)
+
+Press and hold the RESET and BOOT buttons down (button locations shown in step 1)
+
+Release RESET button
+Release BOOT button
+The device should now be in DFU mode. Verify this via the lsusb command, which should look something like this:
+
+```text
+$ lsusb
+Bus 001 Device 005: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
+cd ~/katapult
+git pull
+make menuconfig
+make -j4
+sudo dfu-util -R -a 0 -s 0x08000000:mass-erase:force:leave -D ~/katapult/out/katapult.bin -d 0483:df11
+# disconnect usb cable - remove jumper, add CAN cable to toolhead
+cd ~/klipper
+make clean
+make KCONFIG_CONFIG=~/config/config.ebb36
+~/klippy-env/bin/python3 ~/katapult/scripts/flash_can.py -i can0 -f ~/klipper/out/klipper.bin -u $(grep canbus_uuid ~/config/ebb36.cfg|awk '{print $2}')
+~/klippy-env/bin/python ~/klipper/klippy/console.py -c can0 $(grep canbus_uuid ~/config/ebb36.cfg|awk '{print $2}')
+
+# various can query commands
+ip -details -statistics link show can0
+ip a
+ip -s -d link show can0
+
+$ ~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0
+[can0] Found canbus_uuid=092734b78f4e, Application: Kalico, Assigned: 04
+Total 1 uuids found
+
+
+$ ~/klippy-env/bin/python ~/klipper/scripts/console.py -c can0 $(grep canbus_uuid ~/config/ebb36.cfg|awk '{print $2}')
+```
+
+## ustreamer for webacm
+
+```shell
+# verify camera is found
+$ v4l2-ctl --list-inputs
+ioctl: VIDIOC_ENUMINPUT
+        Input       : 0
+        Name        : Camera 1
+        Type        : 0x00000002 (Camera)
+        Audioset    : 0x00000000
+        Tuner       : 0x00000000
+        Standard    : 0x0000000000000000 ()
+        Status      : 0x00000000 (ok)
+        Capabilities: 0x00000000 (not defined)
+
+sudo apt-get install ustreamer
+sudo vim /etc/systemd/system/ustreamer@.service
+
+[Unit]
+Description=uStreamer service
+After=network.target
+[Service]
+Environment="SCRIPT_ARGS=%I"
+User=pi
+ExecStart=/usr/bin/ustreamer --process-name-prefix ustreamer-%I --log-level 0 --device /dev/video%I --device-timeout=8  --quality 100 --resolution 1280x960 --desired-fps=15 --host=0.0.0.0 --port=808%I --static /var/www/html/ustreamer-%I/
+[Install]
+WantedBy=multi-user.target
+
+###
+sudo systemctl daemon-reload
+sudo systemctl start ustreamer@0.service
+sudo systemctl enable ustreamer@0.service
+```
+
+## install fd
+
+```shell
+curl -sLo /tmp/fd.deb https://github.com/sharkdp/fd/releases/download/v10.3.0/fd_10.3.0_arm64.deb
+root@v24:/etc/systemd# apt install -qy /tmp/fd.deb
+root@v24:/etc/systemd# fd --version
+fd 10.3.0
+```
 ## references
 
 [ks]: <https://github.com/KlipperScreen/KlipperScreen> "KlipperScreen"
 [is_theory]: <https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879> "Input Shaper Theory"
 [shaketune]: <https://github.com/Frix-x/klippain-shaketune> "Klippain Shaketune Repo"
+[fd]: <https://lindevs.com/install-fd-command-for-finding-files-on-raspberry-pi> "Install fd on a pi"
 
 ## updates
 
 - Updating main ef9b5391..91fd6480
 - bleeding-edge-v2 ab9fa12b...9eac41f9
+
+
