@@ -928,4 +928,10 @@ fd 10.3.0
 - Updating main ef9b5391..91fd6480
 - bleeding-edge-v2 ab9fa12b...9eac41f9
 
-
+MPC AUTOTUNE TARGET=10 FAN=11
+#*# [extruder]
+#*# block_heat_capacity = 4.65200
+#*# sensor_responsiveness = 0.0369454
+#*# ambient_transfer = 0.178263
+#*# fan_ambient_transfer = 0.178263, 0.17675, 0.179597, 0.185558, 0.191852, 0.197269, 0.203418, 0.20924, 0.208353, 0.211606, 0.213272
+#*# control = mpc
