@@ -935,3 +935,37 @@ MPC AUTOTUNE TARGET=10 FAN=11
 #*# ambient_transfer = 0.178263
 #*# fan_ambient_transfer = 0.178263, 0.17675, 0.179597, 0.185558, 0.191852, 0.197269, 0.203418, 0.20924, 0.208353, 0.211606, 0.213272
 #*# control = mpc
+
+## spider v3.0
+
+1. Flash katapult
+  - Press Boot and Reset, let go of Reset then Boot for DFU mode
+  - make menuconfig
+  - Set: STM32 -> F446, 32Kib Bootloader, 12MHz Crystal, Ports PA11/PA12, GPIO Pins PD3 for status LED
+  - cp katapult.spider-v3.0 ~/katapult/.config
+  - make menuconfig && make clean
+  - make -j4
+  - sudo dfu-util -R -a 0 -s 0x08000000:mass-erase:force -D ~/katapult/out/katapult.bin
+  - Power cycle board
+  - We have the flashing LED to identify katapult mode
+
+2. Flash klipper with built-in CANBus support
+  - cp config.fysetc-spider-v3.0 ~/klipper/.config
+  - make menuconfig
+  - Set: STM32 -> F446, 32Kib Bootloader, 12MHz Crystal, USB to CAN bus bridge PA11/PA12, CAN PD0/PD1, Speed 1000000
+  - Set GPIO Pins to disable stepper movement on power up: (Enable Pins) - set them all to be safe
+  - CONFIG_INITIAL_PINS="PD4, PD15, PE5, PE3, PE8, PC5, PE15, PE7" 
+  - sudo systemctl stop klipper
+  - put the board in bootloader mode with boot+reset-reset-boot
+  - make clean && make -j4 flash FLASH_DEVICE=0483:df11
+  - We have no flashing LED to identify kalico mode
+  - seems we lost the "katapult flashing led too", when in bootloader mode
+  - seem to have to reboot pi as usb enumeration hangs on flash completion
+
+### network wifi
+
+power save is always on :(
+[Set power management](https://cyberspacemanmike.com/2025/02/22/raspberry-pi-5-wifi-problems-and-solutions/) for wlan0
+
+iw wlan0 get power_save
+sudo iw wlan0 set power_save off
