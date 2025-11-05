@@ -846,7 +846,7 @@ Release RESET button
 Release BOOT button
 The device should now be in DFU mode. Verify this via the lsusb command, which should look something like this:
 
-```text
+```shell
 $ lsusb
 Bus 001 Device 005: ID 0483:df11 STMicroelectronics STM Device in DFU Mode
 cd ~/katapult
@@ -855,13 +855,25 @@ make menuconfig
 make -j4
 sudo dfu-util -R -a 0 -s 0x08000000:mass-erase:force:leave -D ~/katapult/out/katapult.bin -d 0483:df11
 # disconnect usb cable - remove jumper, add CAN cable to toolhead
+```
+For future upgrades the katapult stuff is not required....
+No need for usb or disconnecting from 24v 
+
+```shell
+sudo systemctl stop klipper
 cd ~/klipper
 make clean
 make KCONFIG_CONFIG=~/config/config.ebb36
 ~/klippy-env/bin/python3 ~/katapult/scripts/flash_can.py -i can0 -f ~/klipper/out/klipper.bin -u $(grep canbus_uuid ~/config/ebb36.cfg|awk '{print $2}')
 ~/klippy-env/bin/python ~/klipper/klippy/console.py -c can0 $(grep canbus_uuid ~/config/ebb36.cfg|awk '{print $2}')
+sudo systemctl stop klipper
+```
 
-# various can query commands
+## various can query commands
+
+Debugging can using the following commands
+
+```shell
 ip -details -statistics link show can0
 ip a
 ip -s -d link show can0
@@ -869,7 +881,6 @@ ip -s -d link show can0
 $ ~/klippy-env/bin/python ~/klipper/scripts/canbus_query.py can0
 [can0] Found canbus_uuid=092734b78f4e, Application: Kalico, Assigned: 04
 Total 1 uuids found
-
 
 $ ~/klippy-env/bin/python ~/klipper/scripts/console.py -c can0 $(grep canbus_uuid ~/config/ebb36.cfg|awk '{print $2}')
 ```
