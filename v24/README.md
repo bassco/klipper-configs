@@ -949,6 +949,8 @@ MPC AUTOTUNE TARGET=10 FAN=11
 
 ## spider v3.0
 
+Info for setting the pins to [stop excitation vibration]((https://forum.vorondesign.com/threads/stepper-motor-vibration-at-power-on.979/).
+
 1. Flash katapult
   - Press Boot and Reset, let go of Reset then Boot for DFU mode
   - make menuconfig
@@ -980,3 +982,56 @@ power save is always on :(
 
 iw wlan0 get power_save
 sudo iw wlan0 set power_save off
+
+### new heater and thermistor
+
+Using MPC heater type. `MPC_CALIBRATE` is used for extruder calibration.
+
+```text
+ 14:42:33  $ MPC_CALIBRATE HEATER=extruder TARGET=220 FAN_BREAKPOINTS=11
+14:42:33  // Waiting for heater to settle at ambient temperature
+14:47:32  // Performing heatup test, target is 220.0 degrees
+14:49:08  // Performing ambient transfer tests, target is 228.0 degrees
+14:51:01  // Waiting for temperature to stabilize
+14:51:42  // Temperature stable, measuring power usage with 0% fan speed
+14:52:02  // 0% fan average power: 26.12 W
+14:52:02  // Waiting for temperature to stabilize
+14:54:49  // Temperature stable, measuring power usage with 10% fan speed
+14:55:09  // 10% fan average power: 26.64 W
+14:55:09  // Waiting for temperature to stabilize
+14:56:41  // Temperature stable, measuring power usage with 20% fan speed
+14:57:01  // 20% fan average power: 28.31 W
+14:57:01  // Waiting for temperature to stabilize
+14:58:54  // Temperature stable, measuring power usage with 30% fan speed
+14:59:14  // 30% fan average power: 29.58 W
+14:59:14  // Waiting for temperature to stabilize
+15:00:39  // Temperature stable, measuring power usage with 40% fan speed
+15:00:59  // 40% fan average power: 30.22 W
+15:00:59  // Waiting for temperature to stabilize
+15:01:40  // Temperature stable, measuring power usage with 50% fan speed
+15:02:00  // 50% fan average power: 31.87 W
+15:02:00  // Waiting for temperature to stabilize
+15:03:22  // Temperature stable, measuring power usage with 60% fan speed
+15:03:42  // 60% fan average power: 32.22 W
+15:03:42  // Waiting for temperature to stabilize
+15:04:12  // Temperature stable, measuring power usage with 70% fan speed
+15:04:32  // 70% fan average power: 33.07 W
+15:04:32  // Waiting for temperature to stabilize
+15:05:20  // Temperature stable, measuring power usage with 80% fan speed
+15:05:40  // 80% fan average power: 33.43 W
+15:05:40  // Waiting for temperature to stabilize
+15:06:28  // Temperature stable, measuring power usage with 90% fan speed
+15:06:48  // 90% fan average power: 34.37 W
+15:06:48  // Waiting for temperature to stabilize
+15:07:45  // Temperature stable, measuring power usage with 100% fan speed
+15:08:05  // 100% fan average power: 35.65 W
+15:08:05  // Finished MPC calibration of heater 'extruder'
+// Measured:
+// block_heat_capacity=20.6679 [J/K]
+// sensor_responsiveness=0.0703978 [K/s/K]
+// ambient_transfer=0.131132 [W/K]
+// fan_ambient_transfer=0.131132, 0.133739, 0.142143, 0.148493, 0.151726, 0.160001, 0.161753, 0.16602, 0.167826, 0.172551, 0.179 [W/K]
+
+
+```
+
