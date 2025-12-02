@@ -7,7 +7,9 @@ Changed firmware from Klipper to DangerKlipper
 
 [Board](https://github.com/FYSETC/FYSETC-SPIDER)
 
-* Carbon filter: Nevermore - yes - configure needs to be done and also needs reprinting as the cover has warped and is no longer air tight.
+* Carbon filter: for 1,2,3 and 4 respectively.
+
+Use Nevermore - yes - configure needs to be done and also needs reprinting as the cover has warped and is no longer air tight.
 * GE5C bearing mod - yes - https://github.com/hartk1213/MISC/tree/main/Voron%20Mods/Voron%202/2.4/Voron2.4_GE5C
 * Pins mod for MGN12 -  yes
 * Stealthburner and CW2
@@ -933,6 +935,7 @@ fd 10.3.0
 [is_theory]: <https://klipper.discourse.group/t/interpreting-the-input-shaper-graphs/9879> "Input Shaper Theory"
 [shaketune]: <https://github.com/Frix-x/klippain-shaketune> "Klippain Shaketune Repo"
 [fd]: <https://lindevs.com/install-fd-command-for-finding-files-on-raspberry-pi> "Install fd on a pi"
+[]: <https://github.com/EricZimmerman/Voron24/>
 
 ## updates
 
@@ -1031,7 +1034,48 @@ Using MPC heater type. `MPC_CALIBRATE` is used for extruder calibration.
 // sensor_responsiveness=0.0703978 [K/s/K]
 // ambient_transfer=0.131132 [W/K]
 // fan_ambient_transfer=0.131132, 0.133739, 0.142143, 0.148493, 0.151726, 0.160001, 0.161753, 0.16602, 0.167826, 0.172551, 0.179 [W/K]
-
-
 ```
+
+### tmc2240 on x and y 
+
+Add additional 3 jumpers (4 across the bootom for SPI mode).
+Run motor vibrations and compare
+Add monitor config for temps when active
+
+### bed_fan kalico fake heater style and bed mpc control
+
+Change bed to mpc heating too
+Update fans config and printer macro
+
+```text
+22:50:34 
+$ MPC_CALIBRATE HEATER=heater_bed TARGET=100
+22:50:34 
+// Waiting for heater to settle at ambient temperature
+22:55:37 
+// Performing heatup test, target is 100.0 degrees
+22:57:43 
+// Performing ambient transfer tests, target is 102.0 degrees
+23:00:41 
+// Average stable power: 256.6664223397142 W
+23:00:41 
+// Finished MPC calibration of heater 'heater_bed'
+// Measured:
+// block_heat_capacity=961.942 [J/K]
+// sensor_responsiveness=0.0134877 [K/s/K]
+// ambient_transfer=4.64106 [W/K]
+// fan_ambient_transfer= [W/K]
+```
+## change to pt1000 and use max31865
+
+Was having unstable temperature swings and 'verify_heater' firmware errors when printing ABS between 260 and 270C.
+
+2-wire PT1000 goes into the two central pins of the JST-PX 4 pin connector and the jumpers must be set to On, On, Off, On for 1,2,3 and 4 respectively; when using the MAX31865 chip. Do not set the PT1000 jumper, as that is when you use PA3 and TH0 and need to change the pullup resistor to 2k2.
+
+Use the default config from BTT EBB github for the temp sensor on the ebb36.cfg file. Ran `MPC_CALIBRATE heater=extruder TARGET=260 FAN_BREAKPOINTS=7`, follwoed by `SAVE_CONFIG` when ecxtruder temp cooled. 
+
+Also changed from Ellis's bed fans macro to the built-in kalico generic heater or something....
+
+Change beacon to be more aggressive and to kalico adaptive homing QGL sequence. Very nice. Thanks Eric Zimmermann.
+
 

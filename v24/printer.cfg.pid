@@ -50,7 +50,7 @@ square_corner_velocity: 7.0
 [include beacon.cfg]
 [include bed_mesh.cfg]
 [include rpi.cfg]
-[include fans.cfg]
+[include bed_fans.cfg]
 
 #####################################################################
 #   Bed Heater
@@ -62,21 +62,15 @@ heater_pin: PB4
 sensor_type: Generic 3950
 sensor_pin: PC0
 ##	Adjust Max Power so your heater doesn't warp your bed
-# 300X300*.4 = (360W max power / 600W) Keenvo ~= 0.6 - urban legend
+# 300X300*.4 = (360W max power / 600W) Keenvo ~= 0.6
 max_power: 1.0 # around the 0.6 threshold to avoid a taco bed
-pwm_cycle_time: 0.017
+# pwm_cycle_time: 0.017
 min_temp: 0
 max_temp: 120
-control: mpc
-heater_power: 600
-block_heat_capacity: 961.942 
-sensor_responsiveness: 0.0134877
-ambient_transfer: 4.64106
-
-[verify_heater heater_bed]
-max_error: 500 #default is 120
-check_gain_time: 120
-heating_gain:1
+#control: pid
+#pid_kp: 58.437
+#pid_ki: 2.347
+#pid_kd: 363.769
 
 #####################################################################
 #	Fan Control
@@ -90,7 +84,7 @@ max_power: 1.0
 min_power: 0.1
 heater: heater_bed, extruder
 #heater_temp: 40.0 #disable wait for temp - start cooling immediately
-stepper: stepper_x,stepper_y,stepper_z, stepper_z2, stepper_z2, stepper_z3 # as soon as a stepper is active, start cooling
+stepper: stepper_x,stepper_y,stepper_z # as soon as a stepper is active, start cooling
 
 # Not in use - no cabling
 #[fan_generic exhaust_fan]
@@ -102,16 +96,16 @@ stepper: stepper_x,stepper_y,stepper_z, stepper_z2, stepper_z2, stepper_z3 # as 
 #shutdown_speed: 1.0
 
 # Bed fan
-#[fan_generic Bed_Fans]
+[fan_generic Bed_Fans]
 # Under bed chamber fans - In E0 OUT Position
-#pin: PB15
-#max_power: 1.0
-#shutdown_speed: 0
-#kick_start_time: 0.500
-#min_power: 0.19
+pin: PB15
+max_power: 1.0
+shutdown_speed: 0
+kick_start_time: 0.500
+min_power: 0.19
 
-#[output_pin DISABLE_BED_FANS]
-#pin: PC8  # Unused Pin to allow override of the Bed_Fans
+[output_pin DISABLE_BED_FANS]
+pin: PC8  # Unused Pin to allow override of the Bed_Fans
 
 #####################################################################
 #	LED Control
@@ -140,21 +134,20 @@ timeout: 1800
 # measured to the inner z-belt centre from the (0,0) coordinate
 # re-measure if the bed is moved!
 # see https://klipper.discourse.group/t/qgl-behaviour-on-a-voron350/6516/8
-# https://github.com/EricZimmerman/Voron24/blob/68d37bd1c7bc6fd0a902bc18a579ef4562697748/config/qgl.cfg
 gantry_corners:
 	-55.5,8.0
 	366.5,380.0
+# TAP 0,0 nozzle offset allows equi-distant probe points
 points:
 	25,25
 	25,250
 	275,250
 	275,25
 speed: 200
-horizontal_move_z: 5
+horizontal_move_z: 15
 retries: 3
 retry_tolerance: 0.008
 max_adjust: 10
-adaptive_horizontal_move_z: true
 
 # bed edge temp
 [temperature_sensor bed_edge]
@@ -163,10 +156,10 @@ sensor_pin: PC1
 gcode_id: D
 
 # chamber temp
-#[temperature_sensor chamber]
-#sensor_type: EPCOS 100K B57560G104F
-#sensor_pin: PC2
-#gcode_id: E
+[temperature_sensor Chamber_Temp]
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: PC2
+gcode_id: E
 
 #[temperature_sensor chamber_blue]
 #sensor_type: EPCOS 100K B57560G104F
@@ -188,6 +181,7 @@ max_temp: 100
 [include macros.cfg]
 [include pause_resume.cfg]
 [include K-ShakeTune/*.cfg]
+[include autotune.cfg]
 
 [include input_shaper.cfg]
 #[include bleeding-edge.cfg]
@@ -221,33 +215,25 @@ results_dir: ~/printer_data/config/auto_speed ; Destination directory for graphs
 #*# DO NOT EDIT THIS BLOCK OR BELOW. The contents are auto-generated.
 #*#
 #*# [beacon model default]
-#*# model_coef = 1.5123035777094085,
-#*# 	1.8781706999139003,
-#*# 	0.812721317116825,
-#*# 	0.3062435449893354,
-#*# 	0.2037269354302818,
-#*# 	0.2828706098003833,
-#*# 	-0.0862759604370402,
-#*# 	-0.21155427603345123,
-#*# 	0.1577546905092614,
-#*# 	0.14653785228189448
-#*# model_domain = 1.8494733992648277e-07,1.937760493299399e-07
+#*# model_coef = 1.5533057358370466,
+#*# 	1.9218121816245863,
+#*# 	0.7643056015033672,
+#*# 	0.17571112101930159,
+#*# 	0.2508744736728996,
+#*# 	0.6400525097621598,
+#*# 	-0.1544557691677348,
+#*# 	-0.6988045925613265,
+#*# 	0.18585387749345458,
+#*# 	0.3644329781878436
+#*# model_domain = 1.8644801134172778e-07,1.9400776395730686e-07
 #*# model_range = 0.200000,5.000000
-#*# model_temp = 63.122235
+#*# model_temp = 56.211022
 #*# model_offset = 0.00000
 #*#
 #*# [extruder]
-#*# pid_version = 1
-#*# pid_target = 220.00
-#*# pid_tolerance = 0.0200
-#*# pid_kp = 25.580
-#*# pid_ki = 1.755
-#*# pid_kd = 93.210
-#*# block_heat_capacity = 20.0458
-#*# sensor_responsiveness = 0.0218007
-#*# ambient_transfer = 0.139369
-#*# fan_ambient_transfer = 0.139369, 0.151958, 0.16606, 0.168976, 0.17898, 0.1845, 0.190562
-#*# control = mpc
+#*# pid_kp = 24.058
+#*# pid_ki = 1.471
+#*# pid_kd = 98.339
 #*#
 #*# [pid_profile extruder 195]
 #*# pid_version = 1
@@ -302,6 +288,15 @@ results_dir: ~/printer_data/config/auto_speed ; Destination directory for graphs
 #*# pid_kp = 27.478
 #*# pid_ki = 2.043
 #*# pid_kd = 92.395
+#*#
+#*# [heater_bed]
+#*# pid_version = 1
+#*# pid_target = 100.00
+#*# pid_tolerance = 0.0200
+#*# control = pid
+#*# pid_kp = 41.787
+#*# pid_ki = 1.235
+#*# pid_kd = 353.363
 #*#
 #*# [pid_profile heater_bed 55]
 #*# pid_version = 1

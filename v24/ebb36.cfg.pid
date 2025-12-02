@@ -7,8 +7,7 @@
 # See docs/Config_Reference.md for a description of parameters.
 
 [mcu ebb36]
-# canbus_uuid: 092734b78f4e - original board - hotend temp issues?
-canbus_uuid: 5f999a28d081 
+canbus_uuid: 092734b78f4e
 
 [adxl345 ebb36]
 cs_pin: ebb36: PB12
@@ -27,25 +26,17 @@ rotation_distance: 47.318708
 nozzle_diameter: 0.400
 filament_diameter: 1.750
 heater_pin: ebb36: PB13
-#sensor_type: PT1000 # Generic 3950 # EPCOS 100K B57560G104F
-#pullup_resistor: 2200 # PT1000 jumpered to force 2k2 Ohm for PT1000
-#sensor_pin: ebb36: PA3
-sensor_type: MAX31865
-sensor_pin: ebb36: PA4
-spi_bus: spi1
-rtd_nominal_r: 100
-rtd_reference_r: 430
-rtd_num_of_wires: 2
-
-#control: pid
-#pid_kp = 24.058
-#pid_ki = 1.471
-#pid_kd = 98.339
-control: mpc
-filament_density: 1.20      # Generic Filament Value
-filament_heat_capacity: 1.8 # Generic Filament Value
-heater_power: 50            # heater cartridge is 50W - change if you change cartridges
-cooling_fan: fan            # the name of the part cooling fan
+sensor_type: EPCOS 100K B57560G104F
+sensor_pin: ebb36: PA3
+control: pid
+pid_kp = 24.058
+pid_ki = 1.471
+pid_kd = 98.339
+#control: mpc
+#filament_density: 1.20      # Generic Filament Value
+#filament_heat_capacity: 1.8 # Generic Filament Value
+#heater_power: 50            # heater cartridge is 50W - change if you change cartridges
+#cooling_fan: fan            # the name of the part cooling fan
 min_temp: 0
 max_temp: 280
 max_extrude_only_distance: 300
