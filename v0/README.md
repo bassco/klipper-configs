@@ -40,7 +40,7 @@ Converted home and probe to use upstream klicky-macros.
 
 ### things I found that could be useful
 
-[thermal tape for heat sinks](https://www.amazon.de/dp/B07CSR6NJC)
+[thermal tape for heat sinks](https://www.amazon.de/dp/B07CSR6NJC)https://www.amazon.de/
 
 ### resonance testing
 
@@ -60,3 +60,14 @@ shaper_freq_y: 82.6
 shaper_type_y: mzv
 
 ```
+
+## ebb36 using USB and not CAN
+
+Flash katapult onto the skr mini e3 v2.0
+
+https://klipper.discourse.group/t/flashing-klipper-friendly-bootloader-on-btt-skr-mini-e3-v2/10977
+
+Flash ebb36 into USB
+
+[Mount for the Pi Zero](https://github.com/VoronDesign/Voron-0/blob/Voron0.1/STLs/Raspberry_Pi_0_Mount_x1.stl)
+
