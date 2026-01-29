@@ -135,3 +135,11 @@ dmypy.json
 # vim
 *.swp
 **/.moonraker.conf.bkp
+
+# klipper
+**/?printer-20*.cfg
+**/*.conf.bkp
+**/K-ShakeTune_results/
+**/results/
+**/ShakeTune_results/
+**/*.old
