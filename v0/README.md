@@ -71,3 +71,32 @@ Flash ebb36 into USB
 
 [Mount for the Pi Zero](https://github.com/VoronDesign/Voron-0/blob/Voron0.1/STLs/Raspberry_Pi_0_Mount_x1.stl)
 
+## ebb36 gen2 v1.0 via usb
+
+Follow https://usb.esoterical.online/initial_stm32.html for firmware initial katapult flash.
+
+
+```shell
+echo "katapult initial dfu mode install
+cd ~/katapult
+make clean
+make menuconfig KCONFIG_CONFIG=~/config/config.katapult.ebb-gen2
+make -j4 KCONFIG_CONFIG=~/config/config.katapult.ebb-gen2
+sudo dfu-util -R -a 0 -s 0x08000000:mass-erase:force:leave -D ~/katapult/out/katapult.bin -d 0483:df11
+echo "kalico install"
+cd ~/klipper
+make clean
+make menuconfig KCONFIG_CONFIG=~/config/config.kalico.ebb-gen2
+make -j4 KCONFIG_CONFIG=~/config/config.kalico.ebb-gen2
+make flash FLASH_DEVICE=0483:df11 KCONFIG_CONFIG=~/config/config.kalico.ebb-gen2
+```
+
+## kalico on usb mini E3 v2.0
+
+```shell
+cd ~/klipper
+make clean
+make menuconfig KCONFIG_CONFIG=~/config/config.btt-skr-mini-e3-v2
+make -j4 KCONFIG_CONFIG=~/config/config.btt-skr-mini-e3-v2
+make flash FLASH_DEVICE=/dev/serial/by-id/usb-katapult_stm32f103xe_30FFDA05344E393729680957-if00 KCONFIG_CONFIG=~/config/config.btt-skr-mini-e3-v2
+```
