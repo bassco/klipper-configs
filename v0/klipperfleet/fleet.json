@@ -1,0 +1,53 @@
+[
+    {
+        "name": "skr-mini-e3-v2",
+        "id": "/dev/serial/by-id/usb-Kalico_stm32f103xe_30FFDA05344E393729680957-if00",
+        "profile": "skr-mini-e3-v2",
+        "method": "serial",
+        "interface": "can0",
+        "baudrate": 250000,
+        "notes": "",
+        "is_katapult": true,
+        "is_bridge": false,
+        "dfu_id": null,
+        "magic_baud_tested": false,
+        "use_magic_baud": false,
+        "dfu_exit_tested": false,
+        "use_dfu_exit": false,
+        "exclude_from_batch": false
+    },
+    {
+        "name": "ebb-gen2",
+        "id": "/dev/serial/by-id/usb-Kalico_stm32g0b1xx_350015001750304158373620-if00",
+        "profile": "ebb-gen2",
+        "method": "serial",
+        "interface": "can0",
+        "baudrate": 250000,
+        "notes": "",
+        "is_katapult": true,
+        "is_bridge": false,
+        "dfu_id": null,
+        "magic_baud_tested": false,
+        "use_magic_baud": false,
+        "dfu_exit_tested": false,
+        "use_dfu_exit": false,
+        "exclude_from_batch": false
+    },
+    {
+        "name": "Linux Process (Host MCU)",
+        "id": "linux_process",
+        "profile": "rpi",
+        "method": "linux",
+        "interface": "can0",
+        "baudrate": 250000,
+        "notes": "",
+        "is_katapult": false,
+        "is_bridge": false,
+        "dfu_id": null,
+        "magic_baud_tested": false,
+        "use_magic_baud": false,
+        "dfu_exit_tested": false,
+        "use_dfu_exit": false,
+        "exclude_from_batch": false
+    }
+]
