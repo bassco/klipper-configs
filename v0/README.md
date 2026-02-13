@@ -100,3 +100,24 @@ make menuconfig KCONFIG_CONFIG=~/config/config.btt-skr-mini-e3-v2
 make -j4 KCONFIG_CONFIG=~/config/config.btt-skr-mini-e3-v2
 make flash FLASH_DEVICE=/dev/serial/by-id/usb-katapult_stm32f103xe_30FFDA05344E393729680957-if00 KCONFIG_CONFIG=~/config/config.btt-skr-mini-e3-v2
 ```
+
+## upgrade to rpi 4 4GB
+
+RPi Zero 2W - only one USB port a bit limiting.
+Rpi 3B 1GB - could not handle 4.3" DSI screen - ghosting and vertical banding.
+RPi 4 4GB - plenty of horepower and the screen works great.
+
+HelixScreen i.s.o. KlipperScreen.
+ShakeTune installed
+TMC Autotune installed - untested.
+Hotend PID completed.
+Mini Fridge door skirts installed
+Tulip live idler
+DriftRotor 
+CAM clips for top hat
+KlipperFleet installed and configured with saved configs. Still to test flashing when the new tags are created.
+LDO PSU 24v/5v 200W
+Orbiter 2 to 2.5 conversion
+Orbitor 2.0 Smart Filament Sensor
+DragonBurner v8
+
