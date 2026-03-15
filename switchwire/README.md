@@ -337,3 +337,43 @@ SAVE_CONFIG
 ## flashing SKR 1.3 via gcode
 
 The `FLASH_SKR13` gcode command can flash the LPC1768 MCU from the Klipper console or Fluidd. It auto-detects the device via `/dev/serial/by-id/*lpc1768*`, builds firmware using the klipperfleet profile, and flashes via `flash-sdcard.sh`. Klipper stops and restarts automatically — do not run during a print.
+
+## Shake&Tune Results (2026-03-15)
+
+### X axis (ω₀=64.7Hz, ζ=0.088) — Best: EI @ 60.0 Hz
+
+| Type | Frequency | Vibrations | Smoothing | Max Accel |
+|------|-----------|------------|-----------|-----------|
+| ZV | 66.0 Hz | 8.6% | 0.050 | 16,920 |
+| MZV | 43.6 Hz | 2.8% | 0.110 | 5,390 |
+| **EI** | **60.0 Hz** | **0.0%** | **0.093** | **6,680** |
+| 2HUMP_EI | 77.0 Hz | 0.0% | 0.099 | 6,480 |
+| 3HUMP_EI | 95.2 Hz | 0.0% | 0.099 | 6,510 |
+
+### Y axis (ω₀=35.1Hz, ζ=0.068) — Performance: EI @ 49.6 Hz, Low vibrations: MZV @ 37.2 Hz
+
+| Type | Frequency | Vibrations | Smoothing | Max Accel |
+|------|-----------|------------|-----------|-----------|
+| ZV | 42.4 Hz | 27.3% | 0.097 | 6,800 |
+| **MZV** | **37.2 Hz** | **1.2%** | **0.148** | **3,910** |
+| EI | 49.6 Hz | 3.8% | 0.133 | 4,540 |
+| 2HUMP_EI | 55.0 Hz | 0.0% | 0.181 | 2,880 |
+| 3HUMP_EI | 67.6 Hz | 0.0% | 0.184 | 2,880 |
+
+### Y axis — Two Peaks Analysis
+
+The Y axis graph shows two distinct peaks: peak 1 at ~35 Hz (primary bed resonance) and peak 2 at ~70 Hz (almost exactly 2x — likely a second harmonic or separate structural resonance from frame/table/bed mounting).
+
+**Investigation steps:**
+1. Run `EXCITATE_AXIS_AT_FREQ FREQUENCY=70 AXIS=Y` to identify what vibrates at peak 2
+2. Check bed mounting screws and nylock mod for play
+3. Check Y linear rail — clean, lubricate, verify no binding or play
+4. Try printer on a more rigid surface (rule out table resonance coupling)
+5. Check belt tension via `COMPARE_BELTS_RESPONSES`
+6. Check umbilical/wiring attached to bed for secondary spring effects
+
+**Bed slinger considerations:**
+- Y is always the weakest axis (heaviest moving mass = bed)
+- EI is more robust to resonance frequency shifts as filament mass builds on the bed
+- 2HUMP_EI @ 55.0 Hz would cover both peaks but limits max accel to 2880
+- Reducing bed mass shifts primary frequency up and improves max accel
