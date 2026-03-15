@@ -298,3 +298,38 @@ TTC - change the Pi 3B+ changed force_turbo=1 to avoid TTC errors.
 | `force_turbo` | `0` | `1` |
 
 
+
+## eddy-ng
+
+[eddy-ng](https://github.com/vvuk/eddy-ng) replaces the stock `probe_eddy_current` module with improved Z-offset handling via physical tap calibration. Installed as a Kalico plugin from `~/eddy-ng`.
+
+### install / update
+
+```bash
+cd ~/eddy-ng
+git pull
+./install.sh
+```
+
+### firmware
+
+The eddy MCU firmware must be rebuilt with eddy-ng enabled. The klipperfleet profile `eddy.config` includes `CONFIG_WANT_EDDY_NG=y`. Flash via KlipperFleet UI.
+
+### config
+
+Uses `[probe_eddy_ng btt_eddy]` with `sensor_type: btt_eddy` in `eddy.cfg` instead of `[probe_eddy_current btt_eddy]`. The `[temperature_probe]` section is replaced by a standard `[temperature_sensor]`.
+
+### calibration
+
+```
+PROBE_EDDY_NG_SETUP          # automatic calibration (heat bed to 50-60C first)
+PROBE_EDDY_NG_PROBE_STATIC   # verify readings (shorthand: PEPS)
+PROBE_EDDY_NG_PROBE_ACCURACY # confirm probe accuracy
+SAVE_CONFIG
+```
+
+### notes
+
+- Kalico does NOT support `METHOD=rapid_scan` -- use `METHOD=automatic` or omit METHOD
+- `horizontal_move_z: 2` in `[bed_mesh]` is correct for eddy probes
+- Moonraker update manager entry added for automatic updates

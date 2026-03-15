@@ -15,17 +15,20 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-15 01:32:16",
+        "flashed_version": "v2026.03.00",
+        "flashed_commit": "27902226cab6"
     },
     {
         "name": "mcu EBBCan",
         "id": "d60074679658",
-        "profile": "",
+        "profile": "sb2209",
         "method": "can",
         "interface": "can0",
         "baudrate": 250000,
         "notes": "",
-        "is_katapult": false,
+        "is_katapult": true,
         "is_bridge": false,
         "serial_id": null,
         "dfu_id": null,
@@ -33,7 +36,10 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-15 09:58:20",
+        "flashed_version": "v2026.03.00-dirty",
+        "flashed_commit": "27902226cab6"
     },
     {
         "name": "mcu usbbed (usb-Klipper_rp2040_E6625887D3878537-if00)",
@@ -87,7 +93,10 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-15 10:00:01",
+        "flashed_version": "v2026.03.00-dirty",
+        "flashed_commit": "27902226cab6"
     },
     {
         "name": "mcu (usb-Klipper_lpc1768_0CF0FF0F48104AAF82AA675DC32000F5-if00)",
@@ -105,6 +114,9 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-15 10:02:04",
+        "flashed_version": "v2026.03.00-dirty",
+        "flashed_commit": "27902226cab6"
     }
 ]
