@@ -1,0 +1,29 @@
+#\!/bin/bash
+# Flash SKR 1.3 (LPC1768) via SD card
+set -e
+
+PROFILE=~/config/klipperfleet/profiles/lpc1768.config
+KLIPPER_DIR=~/klipper
+DEVICE=$(ls /dev/serial/by-id/*lpc1768* 2>/dev/null | head -1)
+
+if [ -z "$DEVICE" ]; then
+    echo "ERROR: LPC1768 device not found"
+    exit 1
+fi
+
+echo "Found device: $DEVICE"
+echo "Stopping klipper..."
+sudo systemctl stop klipper
+
+echo "Building firmware..."
+cd $KLIPPER_DIR
+make clean
+make olddefconfig KCONFIG_CONFIG=$PROFILE
+make -j4 KCONFIG_CONFIG=$PROFILE
+
+echo "Flashing $DEVICE..."
+./scripts/flash-sdcard.sh $DEVICE btt-skr-v1.3
+
+echo "Starting klipper..."
+sudo systemctl start klipper
+echo "Flash complete\!"

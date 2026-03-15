@@ -333,3 +333,7 @@ SAVE_CONFIG
 - Kalico does NOT support `METHOD=rapid_scan` -- use `METHOD=automatic` or omit METHOD
 - `horizontal_move_z: 2` in `[bed_mesh]` is correct for eddy probes
 - Moonraker update manager entry added for automatic updates
+
+## flashing SKR 1.3 via gcode
+
+The `FLASH_SKR13` gcode command can flash the LPC1768 MCU from the Klipper console or Fluidd. It auto-detects the device via `/dev/serial/by-id/*lpc1768*`, builds firmware using the klipperfleet profile, and flashes via `flash-sdcard.sh`. Klipper stops and restarts automatically — do not run during a print.
