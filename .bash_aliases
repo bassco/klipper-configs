@@ -20,6 +20,8 @@ alias l='ls -la ${@}'
 alias ll='ls -la ${@}'
 
 # wget https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-armv7-unknown-linux-musleabi.tar.gz -O /tmp/rg.tgz && tar xzf /tmp/rg.tgz && sudo mv /tmp/rg /usr/local/bin/
-# wget https://github.com/sharkdp/fd/releases/download/v10.3.0/fd-musl_10.3.0_armhf.deb -O /tmp/fd.deb && sudo apt install -y ./tmp/fd.deb 
+# wget https://github.com/sharkdp/fd/releases/download/v10.4.2/fd-musl_10.4.2_armhf.deb -O /tmp/fd.deb && sudo apt install -y ./tmp/fd.deb 
+# wget https://github.com/sharkdp/fd/releases/download/v10.4.2/fd-v10.4.2-arm-unknown-linux-musleabihf.tar.gz -O /tmp/fd.tgz && tar xzf /tmp/fd.tgz && sudo mv /tmp/fd /usr/lcal/bin/
+# wget https://github.com/junegunn/fzf/releases/download/v0.70.0/fzf-0.70.0-linux_armv7.tar.gz -O /tmp/fzf.tgz && tar xzf /tmp/fzf.tgz && sudo mv fzf /usr/local/bin/
 eval "$(fzf --bash)"
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'

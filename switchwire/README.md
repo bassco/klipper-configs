@@ -254,3 +254,35 @@ AXES_SHAPER_CALIBRATION
 19:45:17
 // input shaper graphs created successfully!
 
+
+## overhauling october 2024
+
+* [PiCAN](https://github.com/xbst/PiCAN) adapter
+* SB2209 CAN with the GH1.5 connectors :scream:
+* Sensorless on X
+* No magnet MK52 heat bed and magnet foil bed sheet for the PEI plates for Eddy USB
+* Modded X, Z gantry, frame and stepper printed parts
+* 0.5mm shim between bearing stacks for additional belt with. Belts are 6mm with a 10% size tolerance
+* Galileo2 extruder
+
+### overhaul todo
+
+* [fan monitoring](9https://ellis3dp.com/Print-Tuning-Guide/articles/useful_macros/hotend_fan_monitoring.html)
+
+### extruder PID values
+
+PLA PID values: PID_CALIBRATE HEATER=extruder TARGET=200
+PID parameters for 200.00°C: pid_Kp=12.398 pid_Ki=0.566 pid_Kd=67.877
+
+TPU PID values: PID_CALIBRATE HEATER=extruder TARGET=220
+PID parameters for 220.00°C: pid_Kp=12.819 pid_Ki=0.609 pid_Kd=67.459
+
+LW-PLA PID values: PID_CALIBRATE HEATER=extruder TARGET=240
+PID parameters for 240.00°C: pid_Kp=12.740 pid_Ki=0.604 pid_Kd=67.122
+
+PETG PID values: 
+
+### bed PID values
+
+PID parameters for 55.00°C: pid_Kp=29.089 pid_Ki=0.226 pid_Kd=936.652
+
