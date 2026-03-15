@@ -42,7 +42,7 @@ Covers flipped on the screen and the wires were crossed - LCD is now working
 ```console
 cd ~/klipper
 sudo systemctl stop klipper
-./scripts/flash-sdcard.sh /dev/ttyACM0 btt-skr-v1.3
+./scripts/flash-sdcard.sh $(ls /dev/serial/by-id/*lpc1768*) btt-skr-v1.3
 sudo systemctl start klipper
 ```
 
@@ -313,7 +313,7 @@ git pull
 
 ### firmware
 
-The eddy MCU firmware must be rebuilt with eddy-ng enabled. The klipperfleet profile `eddy.config` includes `CONFIG_WANT_EDDY_NG=y`. Flash via KlipperFleet UI.
+The eddy MCU firmware must be rebuilt with eddy-ng enabled. The klipperfleet profile `eddy.config` includes `CONFIG_WANT_EDDY_NG=y`. Flash via KlipperFleet UI. The eddy fleet entry must have `is_katapult: false` since it uses USB bootloader request, not Katapult.
 
 ### config
 
