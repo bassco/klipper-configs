@@ -377,3 +377,35 @@ The Y axis graph shows two distinct peaks: peak 1 at ~35 Hz (primary bed resonan
 - EI is more robust to resonance frequency shifts as filament mass builds on the bed
 - 2HUMP_EI @ 55.0 Hz would cover both peaks but limits max accel to 2880
 - Reducing bed mass shifts primary frequency up and improves max accel
+
+### Y axis after Berserker rail swap (2026-03-15)
+
+Replaced the stock Y linear rail with a West3D Berserker rail.
+
+#### Y axis (ω₀=36.6Hz, ζ=0.060) — Best: MZV @ 36.0 Hz
+
+| Type | Frequency | Vibrations | Smoothing | Max Accel |
+|------|-----------|------------|-----------|-----------|
+| ZV | 36.8 Hz | 8.6% | 0.127 | 4,610 |
+| **MZV** | **36.0 Hz** | **0.6%** | **0.158** | **3,630** |
+| EI | 44.0 Hz | 0.5% | 0.164 | 3,560 |
+| 2HUMP_EI | 53.8 Hz | 0.0% | 0.177 | 2,990 |
+| 3HUMP_EI | 68.6 Hz | 0.0% | 0.179 | 3,000 |
+
+#### Before vs after comparison
+
+| Metric | Stock rail | Berserker | Change |
+|--------|-----------|-----------|--------|
+| ω₀ | 35.1 Hz | 36.6 Hz | +1.5 Hz |
+| ζ (damping) | 0.068 | 0.060 | slightly lower |
+| MZV vibrations | 1.2% | 0.6% | halved |
+| EI vibrations | 3.8% | 0.5% | ~8x better |
+| Second peak (~70 Hz) | prominent | significantly reduced | rail swap resolved |
+
+The Berserker rail largely resolved the two-peak problem. The secondary harmonic at ~70 Hz is significantly reduced, producing a cleaner single-peak resonance profile.
+
+## slicer start gcode
+
+```text
+PRINT_START EXTRUDER={first_layer_temperature[current_extruder]} BED={first_layer_bed_temperature[current_extruder]} Chamber={chamber_temperature[current_extruder]} PRINT_MIN={first_layer_print_min[0]},{first_layer_print_min[1]} PRINT_MAX={first_layer_print_max[0]},{first_layer_print_max[1]}  DWELL=0 MATERIAL={filament_type[current_extruder]}
+```
