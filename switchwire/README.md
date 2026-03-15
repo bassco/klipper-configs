@@ -286,3 +286,15 @@ PETG PID values:
 
 PID parameters for 55.00°C: pid_Kp=29.089 pid_Ki=0.226 pid_Kd=936.652
 
+## pi settings
+
+TTC - change the Pi 3B+ changed force_turbo=1 to avoid TTC errors.
+
+| Metric | Before | After |
+|---|---|---|
+| `governor` | `ondemand` | `ondemand` |
+| `scaling_cur_freq` | `600000` (600 MHz) | `1200000` (1200 MHz) |
+| `vcgencmd arm` | `600 MHz` | `1200 MHz` |
+| `force_turbo` | `0` | `1` |
+
+
