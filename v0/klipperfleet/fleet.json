@@ -1,7 +1,7 @@
 [
     {
         "name": "skr-mini-e3-v2",
-        "id": "/dev/serial/by-id/usb-Kalico_stm32f103xe_30FFDA05344E393729680957-if00",
+        "id": "/dev/serial/by-id/usb-Kalico17_stm32f103xe_30FFDA05344E393729680957-if00",
         "profile": "skr-mini-e3-v2",
         "method": "serial",
         "interface": "can0",
@@ -14,11 +14,14 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-17 15:47:46",
+        "flashed_version": "v2026.03.00",
+        "flashed_commit": "27902226cab6"
     },
     {
         "name": "ebb-gen2",
-        "id": "/dev/serial/by-id/usb-Kalico_stm32g0b1xx_350015001750304158373620-if00",
+        "id": "/dev/serial/by-id/usb-Kalico17_stm32g0b1xx_350015001750304158373620-if00",
         "profile": "ebb-gen2",
         "method": "serial",
         "interface": "can0",
@@ -31,7 +34,10 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-17 15:47:53",
+        "flashed_version": "v2026.03.00",
+        "flashed_commit": "27902226cab6"
     },
     {
         "name": "Linux Process (Host MCU)",
@@ -48,6 +54,9 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-03-17 15:47:57",
+        "flashed_version": "v2026.03.00",
+        "flashed_commit": "27902226cab6"
     }
 ]
