@@ -1,6 +1,6 @@
 {
   "active_printer_id": "default",
-  "config_version": 8,
+  "config_version": 9,
   "dark_mode": true,
   "display": {
     "bed_mesh_render_mode": 0,
@@ -36,6 +36,9 @@
     "selected_strips": null
   },
   "log_path": "/tmp/helixscreen.log",
+  "motion": {
+    "jog_mode": 1
+  },
   "print_start_history": {
     "entries": [
       {
@@ -122,7 +125,7 @@
             "temperature_sensor EBB",
             "temperature_sensor raspberry_pi"
           ],
-          "timestamp": "2026-03-25T19:59:27Z"
+          "timestamp": "2026-03-27T11:56:31Z"
         },
         "optional": []
       },
