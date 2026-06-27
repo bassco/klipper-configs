@@ -33,7 +33,10 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-06-27 22:48:53",
+        "flashed_version": "v2026.06.00-0-ga7e74c5c",
+        "flashed_commit": "a7e74c5c17e5"
     },
     {
         "name": "Linux Host MCU",
@@ -51,6 +54,9 @@
         "use_magic_baud": false,
         "dfu_exit_tested": false,
         "use_dfu_exit": false,
-        "exclude_from_batch": false
+        "exclude_from_batch": false,
+        "last_flashed": "2026-06-27 18:23:35",
+        "flashed_version": "v2026.06.00-0-ga7e74c5c",
+        "flashed_commit": "a7e74c5c17e5"
     }
 ]
